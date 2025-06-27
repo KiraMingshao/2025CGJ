@@ -6,8 +6,11 @@ public class InputQueue : MonoBehaviour {
     [SerializeField]
     private string[] keys;
     private readonly List<InputKey> queue = new List<InputKey>();
+    [SerializeField]
+    private float preInputTime;
 
     public static InputQueue Instance { get; private set; } = null;
+    public string LastPressedKey { get; private set; } = null;
 
     private void Awake() {
         if (Instance != null) {
@@ -33,14 +36,15 @@ public class InputQueue : MonoBehaviour {
         }
     }
 
-    public Option<string> GetKey(string[] allowed_keys, float delta) {
+    public Option<string> GetKey(string[] allowed_keys) {
         for (int i = queue.Count - 1; i >= 0; --i) {
             InputKey key = queue[i];
-            if (Time.time - delta > key.Time) {
+            if (Time.time - preInputTime > key.Time) {
                 return Option<string>.None;
             }
             if (allowed_keys.Contains(key.Key)) {
                 queue.Clear();
+                LastPressedKey = key.Key;
                 return Option<string>.Some(key.Key);
             }
         }
