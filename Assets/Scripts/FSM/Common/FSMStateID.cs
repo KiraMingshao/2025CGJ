@@ -9,7 +9,7 @@ namespace AI.FSM {
         Attack,
         JumpCharge,
         Jump,
-        crouch,
+        Crouch,
         UnderAttack,
     }
 }
