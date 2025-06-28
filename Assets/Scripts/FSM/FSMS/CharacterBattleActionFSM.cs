@@ -19,5 +19,36 @@ namespace AI.FSM {
             this.attackCollider.enabled = false;
             this.rb = this.GetComponent<Rigidbody2D>();
         }
+
+        protected override void SetUpFSM() {
+            base.SetUpFSM();
+
+            IdleState idleState = new IdleState();
+            idleState.AddMap(FSMTriggerID.AttackKeyPressed, FSMStateID.Attack);
+            idleState.AddMap(FSMTriggerID.UnderAttack, FSMStateID.UnderAttack);
+            idleState.AddMap(FSMTriggerID.JumpKeyPressed, FSMStateID.JumpCharge);
+            idleState.AddMap(FSMTriggerID.CrouchKeyPressed, FSMStateID.Crouch);
+            this._states.Add(idleState);
+
+            AttackState attackState = new AttackState();
+            attackState.AddMap(FSMTriggerID.AnimateFinished, FSMStateID.Idle);
+            attackState.AddMap(FSMTriggerID.UnderAttack, FSMStateID.UnderAttack);
+            this._states.Add(attackState);
+
+            JumpChargeState jumpChargeState = new JumpChargeState();
+            jumpChargeState.AddMap(FSMTriggerID.JumpKeyReleased, FSMStateID.Jump);
+            jumpChargeState.AddMap(FSMTriggerID.UnderAttack, FSMStateID.UnderAttack);
+            this._states.Add(jumpChargeState);
+
+            JumpState jumpState = new JumpState();
+            jumpState.AddMap(FSMTriggerID.OnGround, FSMStateID.Idle);
+            jumpState.AddMap(FSMTriggerID.UnderAttack, FSMStateID.UnderAttack);
+            this._states.Add(jumpState);
+
+            CrouchState crouchState = new CrouchState();
+            crouchState.AddMap(FSMTriggerID.CrouchKeyReleased, FSMStateID.Idle);
+            crouchState.AddMap(FSMTriggerID.AttackKeyPressed, FSMStateID.Attack);
+            this._states.Add(crouchState);
+        }
     }
 }
