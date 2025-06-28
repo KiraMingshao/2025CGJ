@@ -40,10 +40,9 @@ namespace Enemy {
             this.Attack(additionalAttack);
         }
 
-        public void Shoot(float bulletSpeed) {
+        public void Shoot() {
             var offset = new Vector3(-this.attackCollider.bounds.extents.x / 2, 0f);
             var newBullet = Instantiate(bullet, this.transform.position + offset, Quaternion.identity);
-            newBullet.GetComponent<Rigidbody2D>().velocity = bulletSpeed * 100 * Time.deltaTime * Vector2.left;
             newBullet.GetComponent<BulletController>().attack = this.attack;
         }
 

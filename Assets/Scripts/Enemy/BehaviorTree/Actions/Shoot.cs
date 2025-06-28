@@ -2,7 +2,6 @@
 
 namespace Enemy.BehaviorTree {
     public class ShootAction : Action {
-        public float bulletSpeed;
         public int delayFrames;
         public string shootTrigger;
         private Enemy enemy;
@@ -22,7 +21,7 @@ namespace Enemy.BehaviorTree {
                 --this.framesLeft;
                 return TaskStatus.Running;
             }
-            this.enemy.Shoot(this.bulletSpeed);
+            this.enemy.Shoot();
             return TaskStatus.Success;
         }
     }
