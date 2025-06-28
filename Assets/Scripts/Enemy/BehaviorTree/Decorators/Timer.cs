@@ -21,10 +21,11 @@ namespace Enemy.BehaviorTree {
             return 0;
         }
 
-        public override void OnChildExecuted(TaskStatus childStatus) {
-            if (beginTime + time < Time.time) {
-                BehaviorManager.instance.Interrupt(Owner, this, TaskStatus.Success);
+        public override TaskStatus OverrideStatus() {
+            if (!CanExecute()) {
+                return TaskStatus.Running;
             }
+            return TaskStatus.Success;
         }
 
         public override TaskStatus OverrideStatus(TaskStatus status) {
