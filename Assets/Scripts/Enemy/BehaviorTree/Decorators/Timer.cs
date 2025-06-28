@@ -1,4 +1,6 @@
+using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
+using System.Collections;
 using UnityEngine;
 
 namespace Enemy.BehaviorTree {
@@ -6,7 +8,6 @@ namespace Enemy.BehaviorTree {
         public float time;
 
         private float beginTime = -1;
-        private TaskStatus executionStatus = TaskStatus.Inactive;
 
         public override bool CanExecute() {
             if (Mathf.Approximately(beginTime, -1))
@@ -16,27 +17,44 @@ namespace Enemy.BehaviorTree {
 
         public override int CurrentChildIndex() {
             if (Mathf.Approximately(beginTime, -1))
-                return 0;
-            return -1;
+                return -1;
+            return 0;
+        }
+
+        public override void OnChildExecuted(TaskStatus childStatus) {
+            if (beginTime + time < Time.time) {
+                BehaviorManager.instance.Interrupt(Owner, this, TaskStatus.Success);
+            }
+        }
+
+        public override TaskStatus OverrideStatus() {
+            return TaskStatus.Success;
         }
 
         public override TaskStatus Decorate(TaskStatus status) {
-            return executionStatus;
+            return TaskStatus.Success;
         }
 
-        public override TaskStatus OnUpdate() {
-            if (beginTime + time > Time.time)
-                executionStatus = TaskStatus.Success;
-            return executionStatus;
+        public override TaskStatus OverrideStatus(TaskStatus status) {
+            if (status != TaskStatus.Inactive && status != TaskStatus.Running)
+                return TaskStatus.Success;
+            return status;
         }
+
 
         public override void OnStart() {
-            executionStatus = TaskStatus.Running;
+            Debug.Log("Start timer");
             beginTime = Time.time;
+            StartCoroutine(interruptChild());
+        }
+
+        private IEnumerator interruptChild() {
+            yield return new WaitForSeconds(time);
+            BehaviorManager.instance.Interrupt(Owner, this, TaskStatus.Success);
         }
 
         public override void OnEnd() {
-            executionStatus = TaskStatus.Inactive;
+            Debug.Log("Reset timer " + beginTime + ' ' + time + ' ' + Time.time);
             beginTime = -1;
         }
     }

@@ -7,12 +7,17 @@ namespace Enemy.BehaviorTree {
         private Rigidbody2D rb;
 
         public override void OnAwake() {
-            rb = GetComponent<Rigidbody2D>();
+            this.rb = GetComponent<Rigidbody2D>();
         }
 
         public override TaskStatus OnUpdate() {
-            this.rb.velocity = speed * Time.deltaTime * Vector2.left;
+            this.rb.velocity = new Vector2(speed * Time.deltaTime * 100, this.rb.velocity.y);
             return TaskStatus.Running;
+        }
+
+        public override void OnEnd() {
+            Debug.Log("reset velocity");
+            this.rb.velocity = Vector2.zero;
         }
     }
 }
