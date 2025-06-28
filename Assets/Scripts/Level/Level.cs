@@ -277,13 +277,7 @@ public class LevelManager : MonoBehaviour
 
     private void SpawnEnemy(GameObject enemyPrefab)
     {
-        // 这里实现敌人的实际生成逻辑
-        // 示例:
-        // var enemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
-        // activeEnemies.Add(enemy);
-        
-        // 可能需要设置敌人的死亡回调
-        // enemy.GetComponent<Enemy>().OnDeath += () => OnEnemyDeath(enemy);
+        enemyPrefab.GetComponent<Enemy.Enemy>().Respawn();
     }
 
     public void OnEnemyDeath(GameObject enemy)
