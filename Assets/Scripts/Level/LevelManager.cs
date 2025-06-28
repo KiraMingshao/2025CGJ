@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using AI.FSM;
 using UnityEngine;
 
 [System.Serializable]
@@ -50,8 +51,8 @@ public class LevelManager : MonoBehaviour
     private bool isLevelFinished = false;
     public List<Vector3> RandomSkyPoints = new List<Vector3>(); // 随机生成敌人时，随机选择的位置点
 
-    private int totalWaveEnenmy = 0;
-    private int spawnedEnemy = 0;
+    private float processWaveTime = 0;
+    private float totalWaveTime = 0;
     
     public enum LevelState
     {
@@ -77,8 +78,8 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        normalWaveConfigs.ForEach(config => totalWaveEnenmy += config.waveGroups.Sum(group => group.enemies.Count));
-        specialWaveConfigs.ForEach(config => totalWaveEnenmy += config.waveGroup.enemies.Count);
+        normalWaveConfigs.ForEach(config => totalWaveTime += config.waveInterval * config.waveGroups.Sum(group => group.enemies.Count));
+        specialWaveConfigs.ForEach(config => totalWaveTime += config.waveGroup.spawnInterval * config.waveGroup.enemies.Count);
         
         // 初始化特殊波次触发记录
         foreach (var config in specialWaveConfigs)
@@ -103,9 +104,11 @@ public class LevelManager : MonoBehaviour
         // 更新关卡进度
         if (currentState == LevelState.InProgress )
         {
-            // currentProgress += progressSpeed * Time.deltaTime;
-            currentProgress = 100f * spawnedEnemy / totalWaveEnenmy;
-            currentProgress = Mathf.Clamp(currentProgress, 0f, 100f);
+            if (GameLauncher.Instance.player.GetComponent<CharacterBattleActionFSM>().CurrentState != AI.FSM.FSMStateID.Crouch)
+            {
+                currentProgress = 100f * processWaveTime / totalWaveTime;
+                currentProgress = Mathf.Clamp(currentProgress, 0f, 100f);
+            }
         }
 
         // 检查是否需要更新波次配置
@@ -288,7 +291,6 @@ public class LevelManager : MonoBehaviour
 
     private void SpawnEnemy(GameObject enemyPrefab, Vector3 spawnPosition)
     {
-        spawnedEnemy++;
         var obj = GameObject.Instantiate(enemyPrefab);
         var enemy = obj.GetComponent<Enemy.Enemy>();
         enemy.spawnPosition = spawnPosition;
