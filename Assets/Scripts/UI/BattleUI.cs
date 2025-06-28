@@ -39,7 +39,7 @@ public class BattleUI : MonoBehaviour
                 stars[i].SetActive(true);
                 var rect = stars[i].GetComponent<RectTransform>();
                 var fatherRect = levelSlider.GetComponent<RectTransform>();
-                rect.localPosition = new Vector3(fatherRect.rect.width / specialWaveConfigs[i].triggerProgress, 0, 0);
+                rect.anchoredPosition = new Vector2(fatherRect.rect.width* specialWaveConfigs[i].triggerProgress / 100, 0);
             }
             else
             {
@@ -54,7 +54,7 @@ public class BattleUI : MonoBehaviour
         endItem.acive = false;
         for (int i = 0; i < maxEnergy; i++)
         {
-            if (i > 0 && i < energyItems.Count - 1)
+            if (i > 0 && i < maxEnergy - 1)
             {
                 var obj = GameObject.Instantiate(energyItems[0].gameObject, energyContent);
                 energyItems.Add(obj.GetComponent<EnergyItem>());
@@ -93,7 +93,6 @@ public class BattleUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        levelSlider.value = LevelManager.Instance.currentProgress / 100;
-
+        levelSlider.value = LevelManager.Instance.currentProgress;
     }
 }
