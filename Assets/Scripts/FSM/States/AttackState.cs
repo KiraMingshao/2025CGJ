@@ -25,6 +25,14 @@ namespace AI.FSM {
             if (fsm is CharacterBattleActionFSM characterFSM) {
                 this.attackCollider = this.getAttackCollider(characterFSM);
                 this.attackCollider.enabled = true;
+
+                if (InputQueue.Instance.LastPressedKey == "ChopDown") {
+                    var wave = Object.Instantiate(characterFSM.wave, characterFSM.transform.position, Quaternion.identity);
+                    wave.tag = "PlayerWave";
+                    int strength = Mathf.FloorToInt(characterFSM.character.GetDecoratedStatus().attack * characterFSM.waveStrengthFactor * characterFSM.transform.localScale.y);
+                    wave.GetComponent<WaveController>().strength = strength;
+                    wave.GetComponent<Rigidbody2D>().velocity = characterFSM.waveVelocityFactor / strength * Vector2.right;
+                }
             }
         }
 

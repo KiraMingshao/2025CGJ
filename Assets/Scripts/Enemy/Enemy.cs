@@ -8,6 +8,7 @@ namespace Enemy {
         public Rigidbody2D rb { get; private set; }
         public Animator animator;
         public GameObject bullet;
+        public GameObject wave;
         public Vector3 spawnPosition;
 
         [Header("Properties")]
@@ -23,6 +24,10 @@ namespace Enemy {
         public string attackTrigger;
         public string chargeTrigger;
         public string respawnTrigger;
+
+        [Header("Wave Strength Params")]
+        public float waveStrengthFactor = 0.8f;
+        public float waveVelocityFactor = 5f;
 
         public void Awake() {
             this.rb = this.GetComponent<Rigidbody2D>();
@@ -44,6 +49,14 @@ namespace Enemy {
             var newBullet = Instantiate(bullet, this.transform.position, Quaternion.identity);
             newBullet.tag = "EnemyBullet";
             newBullet.GetComponent<BulletController>().attack = this.attack;
+        }
+
+        public void CreateWave() {
+            var newWave = Instantiate(wave, this.transform.position, Quaternion.identity);
+            newWave.tag = "EnemyWave";
+            int strength = Mathf.FloorToInt(attack * waveStrengthFactor * this.transform.localScale.y);
+            newWave.GetComponent<WaveController>().strength = strength;
+            newWave.GetComponent<Rigidbody2D>().velocity = waveVelocityFactor / strength * Vector2.left;
         }
 
         public void Respawn() {

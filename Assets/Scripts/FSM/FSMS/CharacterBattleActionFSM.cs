@@ -12,6 +12,11 @@ namespace AI.FSM {
         public Collider2D chopUpCollider;
         public Collider2D chopDownCollider;
 
+        [Header("Wave")]
+        public GameObject wave;
+        public float waveStrengthFactor = 0.8f;
+        public float waveVelocityFactor = 5f;
+
         [HideInInspector]
         public float jumpCharge;
         [HideInInspector]
