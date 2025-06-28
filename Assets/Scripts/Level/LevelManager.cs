@@ -48,7 +48,7 @@ public class LevelManager : MonoBehaviour
     private bool isSpawning = false;
     private bool isFinalBattle = false;
     private bool isLevelFinished = false;
-    public List<Vector2> RandomSkyPoints = new List<Vector2>(); // 随机生成敌人时，随机选择的位置点
+    public List<Vector3> RandomSkyPoints = new List<Vector3>(); // 随机生成敌人时，随机选择的位置点
 
     public enum LevelState
     {
