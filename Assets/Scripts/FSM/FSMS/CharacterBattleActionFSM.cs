@@ -38,6 +38,7 @@ namespace AI.FSM {
             JumpChargeState jumpChargeState = new JumpChargeState();
             jumpChargeState.AddMap(FSMTriggerID.JumpKeyReleased, FSMStateID.Jump);
             jumpChargeState.AddMap(FSMTriggerID.UnderAttack, FSMStateID.UnderAttack);
+            jumpChargeState.AddMap(FSMTriggerID.CrouchKeyPressed, FSMStateID.Idle);
             this._states.Add(jumpChargeState);
 
             JumpState jumpState = new JumpState();
