@@ -7,8 +7,8 @@ namespace Character {
         public AnimationCurve imbalanceGainCurve;
 
         public StatusDecorator decorator;
-        [Header("Resilience")]
-        public int attackResilienceIncrease;
+        [Header("Imbalance")]
+        public int attackImbalanceIncrease;
 
         private void Awake() {
             this.decorator = new DefaultDecorator(decoratorParams);
