@@ -275,6 +275,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &477962681 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3260893188352361170, guid: 4d887c8a1fd73e74182129b71f269bff, type: 3}
+  m_PrefabInstance: {fileID: 97683802}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &477962686 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4210808247674834787, guid: 4d887c8a1fd73e74182129b71f269bff, type: 3}
@@ -315,170 +320,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6031166209887633097, guid: ebdc45574af4e7646b797d4623971ac0, type: 3}
   m_PrefabInstance: {fileID: 1631018443}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &810868945
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 810868947}
-  - component: {fileID: 810868946}
-  m_Layer: 0
-  m_Name: Spider-Idle
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!212 &810868946
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 810868945}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: cd8dd7b1988175842a6d9928a82b9292, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 9.38, y: 11.02}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!4 &810868947
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 810868945}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.3, y: -1.66, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1152068778
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1152068780}
-  - component: {fileID: 1152068779}
-  m_Layer: 0
-  m_Name: Horse-Idle
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!212 &1152068779
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1152068778}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c0a6ebf07ce117e4a84aa009227dec13, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 9.07, y: 10.55}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!4 &1152068780
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1152068778}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.23, y: -1.96, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1607797793
 GameObject:
   m_ObjectHideFlags: 0
@@ -756,19 +597,35 @@ MonoBehaviour:
     endProgress: 30
     waveGroups:
     - enemies:
-      - {fileID: 0}
-      - {fileID: 0}
-      - {fileID: 0}
-      spawnInterval: 0.5
+      - {fileID: 3260893188352361170, guid: 4d887c8a1fd73e74182129b71f269bff, type: 3}
+      - {fileID: 3260893188352361170, guid: 4d887c8a1fd73e74182129b71f269bff, type: 3}
+      - {fileID: 3260893188352361170, guid: ccd5c0811cec31a4691a74f9e31e02b0, type: 3}
+      spawnInterval: 1
+    - enemies:
+      - {fileID: 3260893188352361170, guid: 4d887c8a1fd73e74182129b71f269bff, type: 3}
+      - {fileID: 3260893188352361170, guid: ccd5c0811cec31a4691a74f9e31e02b0, type: 3}
+      - {fileID: 3260893188352361170, guid: ccd5c0811cec31a4691a74f9e31e02b0, type: 3}
+      spawnInterval: 1
+    - enemies:
+      - {fileID: 3260893188352361170, guid: ccd5c0811cec31a4691a74f9e31e02b0, type: 3}
+      - {fileID: 3260893188352361170, guid: 4d887c8a1fd73e74182129b71f269bff, type: 3}
+      - {fileID: 3260893188352361170, guid: 4d887c8a1fd73e74182129b71f269bff, type: 3}
+      spawnInterval: 1
     randomSelection: 0
-    waveInterval: 0
-    killCountToNextWave: 0
-  - startProgress: 0
-    endProgress: 0
-    waveGroups: []
+    waveInterval: 30
+    killCountToNextWave: 3
+  - startProgress: 30
+    endProgress: 70
+    waveGroups:
+    - enemies:
+      - {fileID: 3260893188352361170, guid: 4d887c8a1fd73e74182129b71f269bff, type: 3}
+      - {fileID: 477962681}
+      - {fileID: 3260893188352361170, guid: ccd5c0811cec31a4691a74f9e31e02b0, type: 3}
+      - {fileID: 477962681}
+      spawnInterval: 0
     randomSelection: 0
-    waveInterval: 0
-    killCountToNextWave: 0
+    waveInterval: 45
+    killCountToNextWave: 3
   - startProgress: 0
     endProgress: 0
     waveGroups: []
@@ -785,6 +642,6 @@ MonoBehaviour:
   progressSpeed: 1
   battleUI: {fileID: 0}
   RandomSkyPoints:
-  - {x: 0, y: 0, z: 229.46242}
-  - {x: 0, y: 0, z: 229.46242}
-  - {x: 0, y: 0, z: 229.46242}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}

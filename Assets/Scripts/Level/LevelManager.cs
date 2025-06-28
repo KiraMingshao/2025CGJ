@@ -276,6 +276,7 @@ public class LevelManager : MonoBehaviour
         foreach (var enemyPrefab in waveGroup.enemies)
         {
             var length = RandomSkyPoints.Count;
+
             SpawnEnemy(enemyPrefab, RandomSkyPoints[UnityEngine.Random.Range(0, length)]);
             yield return new WaitForSeconds(waveGroup.spawnInterval);
         }
@@ -289,6 +290,8 @@ public class LevelManager : MonoBehaviour
     {
         spawnedEnemy++;
         var enemy = enemyPrefab.GetComponent<Enemy.Enemy>();
+        var obj = GameObject.Instantiate(enemyPrefab);
+        var enemy = obj.GetComponent<Enemy.Enemy>();
         enemy.spawnPosition = spawnPosition;
         enemy.Respawn();
         activeEnemies.Add(enemyPrefab);
