@@ -28,7 +28,7 @@ namespace Character {
         }
 
         private int GetImbalanceGain() {
-            return Mathf.RoundToInt(imbalanceGainCurve[Mathf.Abs(this.GetDecoratedStatus().imbalance)].value);
+            return Mathf.RoundToInt(imbalanceGainCurve[(int)(Mathf.Abs(this.GetDecoratedStatus().imbalance) * 1f / this.status.maxImbalance)].value);
         }
 
         public void AddImbalance(int delta) {
