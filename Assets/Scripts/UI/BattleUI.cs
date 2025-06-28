@@ -12,6 +12,7 @@ public class BattleUI : MonoBehaviour
     public Transform energyContent;
     public EnergyItem startItem;
     public EnergyItem endItem;
+    public List<GameObject> stars;
     private List<EnergyItem> energyItems;
 
     public void Init(int maxHealth, int maxEnergy)
@@ -22,6 +23,24 @@ public class BattleUI : MonoBehaviour
         levelSlider.value = 0;
         balanceSlider.value = 0;
         CreateEnergy(maxEnergy);
+    }
+
+    public void InitLevel(List<SpecialWaveConfig> specialWaveConfigs)
+    {
+        for (int i = 0; i < stars.Count; i++)
+        {
+            if (i<specialWaveConfigs.Count)
+            {
+                stars[i].SetActive(true);
+                var rect = stars[i].GetComponent<RectTransform>();
+                var fatherRect = levelSlider.GetComponent<RectTransform>();
+                rect.localPosition = new Vector3(fatherRect.rect.width / specialWaveConfigs[i].triggerProgress, 0, 0);
+            }
+            else
+            {
+                stars[i].SetActive(false);
+            }
+        }
     }
 
     private void CreateEnergy(int maxEnergy)
@@ -68,6 +87,7 @@ public class BattleUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        levelSlider.value = LevelManager.Instance.currentProgress / 100;
 
     }
 }
