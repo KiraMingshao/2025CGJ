@@ -8,6 +8,7 @@ namespace Enemy.BehaviorTree {
         public float time;
 
         private float beginTime = -1;
+        private TaskStatus childStatus = TaskStatus.Inactive;
 
         public override bool CanExecute() {
             if (Mathf.Approximately(beginTime, -1))
@@ -25,19 +26,12 @@ namespace Enemy.BehaviorTree {
             if (beginTime + time < Time.time) {
                 BehaviorManager.instance.Interrupt(Owner, this, TaskStatus.Success);
             }
-        }
-
-        public override TaskStatus OverrideStatus() {
-            return TaskStatus.Success;
-        }
-
-        public override TaskStatus Decorate(TaskStatus status) {
-            return TaskStatus.Success;
+            this.childStatus = childStatus;
         }
 
         public override TaskStatus OverrideStatus(TaskStatus status) {
             if (status != TaskStatus.Inactive && status != TaskStatus.Running)
-                return TaskStatus.Success;
+                return childStatus;
             return status;
         }
 
@@ -45,6 +39,7 @@ namespace Enemy.BehaviorTree {
         public override void OnStart() {
             Debug.Log("Start timer");
             beginTime = Time.time;
+            childStatus = TaskStatus.Running;
             StartCoroutine(interruptChild());
         }
 
@@ -56,6 +51,7 @@ namespace Enemy.BehaviorTree {
         public override void OnEnd() {
             Debug.Log("Reset timer " + beginTime + ' ' + time + ' ' + Time.time);
             beginTime = -1;
+            childStatus = TaskStatus.Inactive;
         }
     }
 }
