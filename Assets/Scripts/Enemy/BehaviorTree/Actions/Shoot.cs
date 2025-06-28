@@ -3,9 +3,15 @@
 namespace Enemy.BehaviorTree {
     public class ShootAction : Action {
         public int delayFrames;
-        public string shootTrigger;
+        public string animTrigger;
         private Enemy enemy;
         private int framesLeft;
+
+        public enum Type { 
+            Bullet,
+            Wave,
+        }
+        public Type type;
 
         public override void OnAwake() {
             this.enemy = this.GetComponent<Enemy>();
@@ -13,7 +19,7 @@ namespace Enemy.BehaviorTree {
 
         public override void OnStart() {
             this.framesLeft = this.delayFrames;
-            this.enemy.animator.SetTrigger(shootTrigger);
+            this.enemy.animator.SetTrigger(animTrigger);
         }
 
         public override TaskStatus OnUpdate() {
@@ -21,7 +27,10 @@ namespace Enemy.BehaviorTree {
                 --this.framesLeft;
                 return TaskStatus.Running;
             }
-            this.enemy.Shoot();
+            if (this.type == Type.Bullet)
+                this.enemy.Shoot();
+            else
+                this.enemy.CreateWave();
             return TaskStatus.Success;
         }
     }

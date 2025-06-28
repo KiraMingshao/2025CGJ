@@ -4,16 +4,11 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class WaveController : MonoBehaviour {
     public int strength;
-    public int initSpeed;
     public float maxAliveTime = 100f;
     private new Rigidbody2D rigidbody;
 
     private void Awake() {
         this.rigidbody = GetComponent<Rigidbody2D>();
-    }
-
-    private void Start() {
-        this.rigidbody.velocity = initSpeed * Time.deltaTime * 100 * Vector2.right;
     }
 
     private void Update() {
@@ -37,11 +32,11 @@ public class WaveController : MonoBehaviour {
                 this.strength -= anotherWave.strength;
                 anotherWave.strength -= temp;
             }
-        } else if (collision.CompareTag("Enemy")) {
+        } else if (collision.CompareTag("Enemy") && this.CompareTag("PlayerWave")) {
             Enemy.Enemy enemy = collision.GetComponent<Enemy.Enemy>();
             enemy.imbalance += this.strength;
             Destroy(this.gameObject);
-        } else if (collision.CompareTag("Player")) {
+        } else if (collision.CompareTag("Player") && this.CompareTag("EnemyWave")) {
             Character.Character character = collision.GetComponent<Character.Character>();
             character.status.imbalance += this.strength;
             Destroy(this.gameObject);
