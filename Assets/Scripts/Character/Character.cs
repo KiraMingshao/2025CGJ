@@ -10,5 +10,9 @@ namespace Character {
         private void Awake() {
             this.decorator = new DefaultDecorator(decoratorParams);
         }
+
+        public Status GetDecoratedStatus() {
+            return this.decorator.Decorate(status);
+        }
     }
 }
