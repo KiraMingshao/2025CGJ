@@ -49,6 +49,7 @@ namespace Enemy {
         public void Respawn() {
             this.animator.SetTrigger(respawnTrigger);
             this.transform.position = spawnPosition.position;
+            this.rb.velocity = Vector2.zero;
         }
 
         private void Update() {
