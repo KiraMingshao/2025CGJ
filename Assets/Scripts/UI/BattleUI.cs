@@ -9,7 +9,6 @@ public class BattleUI : MonoBehaviour
     public Slider hpSlider;
     public Slider levelSlider;
     public Slider balanceSlider;
-
     public Transform energyContent;
     public EnergyItem startItem;
     public EnergyItem endItem;
