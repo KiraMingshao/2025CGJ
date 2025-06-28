@@ -15,7 +15,9 @@ public class BulletController : MonoBehaviour {
     }
 
     private void Start() {
-        this.rigidbody.velocity = initSpeed * 100 * Time.deltaTime * Vector2.right;
+        GameObject player = GameLauncher.Instance.player;
+        Vector2 direction = (player.transform.position - this.transform.position).normalized;
+        this.rigidbody.velocity = initSpeed * 100 * Time.deltaTime * direction;
     }
 
     private void Update() {

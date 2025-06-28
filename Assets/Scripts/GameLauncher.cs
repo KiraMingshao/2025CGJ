@@ -4,13 +4,25 @@ using UnityEngine;
 
 public class GameLauncher : MonoBehaviour
 {
+    public static GameLauncher Instance { get; private set; }
+
+    public GameObject player;
+
+    private void Awake() {
+        if (Instance != null) {
+            Destroy(gameObject);
+            Debug.LogWarning("Multiple InputQueue instances detected. Destroying duplicate instance.");
+            return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
 
     void Start()
     {
         // 初始化游戏系统（可扩展）
         InitializeGameSystems();
 
-        DontDestroyOnLoad(this.gameObject);
     }
 
     void InitializeGameSystems()
