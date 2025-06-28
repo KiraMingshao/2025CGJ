@@ -4,14 +4,16 @@ namespace Character {
         }
 
         public override Status Decorate(Status baseStatus) {
-            return new Status(baseStatus.maxHealth, baseStatus.maxImbalance, baseStatus.maxEnergy, baseStatus.lowEnergyBoundary) {
+            return new Status(baseStatus.maxHealth, baseStatus.maxImbalance, baseStatus.maxEnergy, baseStatus.lowEnergyBoundary, baseStatus.increaseResilience) {
                 health = baseStatus.health,
                 resilience = baseStatus.resilience + decoratorParams.resilienceIncrease,
                 imbalance = baseStatus.imbalance,
                 attack = baseStatus.attack + decoratorParams.attackIncrease,
                 attackSpeed = baseStatus.attackSpeed * decoratorParams.attackSpeedIncrease,
                 energy = baseStatus.energy,
-                speed = baseStatus.speed
+                speed = baseStatus.speed,
+                maxJumpSpeed = baseStatus.maxJumpSpeed,
+                jumpChargeSpeed = baseStatus.jumpChargeSpeed,
             };
         }
     }
