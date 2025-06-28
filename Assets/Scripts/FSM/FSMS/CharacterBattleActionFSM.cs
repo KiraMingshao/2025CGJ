@@ -12,6 +12,7 @@ namespace AI.FSM {
 
         [HideInInspector]
         public float jumpCharge;
+        [HideInInspector]
         public Rigidbody2D rb;
 
         protected override void Init() {
