@@ -71,6 +71,7 @@ GameObject:
   - component: {fileID: 4484905688595441141}
   - component: {fileID: 8917406104023605156}
   - component: {fileID: 7089101223250490977}
+  - component: {fileID: 4584765572193431992}
   m_Layer: 7
   m_Name: Bird
   m_TagString: Enemy
@@ -247,7 +248,7 @@ MonoBehaviour:
   bodyCollider: {fileID: 8917406104023605156}
   animator: {fileID: 0}
   bullet: {fileID: 8880025452507042074, guid: 84b31a40191f12e47984a96c4d03d420, type: 3}
-  spawnPosition: {fileID: 0}
+  spawnPosition: {x: 0, y: 0, z: 0}
   health: 10
   attack: 3
   resilience: 1
@@ -257,3 +258,22 @@ MonoBehaviour:
   attackTrigger: 
   chargeTrigger: 
   respawnTrigger: 
+--- !u!95 &4584765572193431992
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3260893188352361170}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 61d50a640a4061d41ae0d067186ee8b4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
