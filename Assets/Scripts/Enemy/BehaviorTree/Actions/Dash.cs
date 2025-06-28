@@ -6,7 +6,7 @@ namespace Enemy.BehaviorTree {
         public float moveSpeed;
         public float dashSpeed;
         public Vector3 startDashPosition;
-        public Vector3 endDashPosition;
+        public float dashDistance;
         public float eps = 0.05f;
         private Enemy enemy;
         private bool isDashing = false;
@@ -27,7 +27,7 @@ namespace Enemy.BehaviorTree {
             } else {
                 this.isDashing = true;
                 this.enemy.rb.velocity = this.dashSpeed * 100 * Time.deltaTime * Vector2.left;
-                if (Vector3.Distance(this.transform.position, this.endDashPosition) < eps * this.dashSpeed) {
+                if (Vector3.Distance(this.transform.position, this.startDashPosition) > dashDistance) {
                     this.enemy.Respawn();
                     return TaskStatus.Success;
                 }
