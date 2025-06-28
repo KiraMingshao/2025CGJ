@@ -289,7 +289,6 @@ public class LevelManager : MonoBehaviour
     private void SpawnEnemy(GameObject enemyPrefab, Vector3 spawnPosition)
     {
         spawnedEnemy++;
-        var enemy = enemyPrefab.GetComponent<Enemy.Enemy>();
         var obj = GameObject.Instantiate(enemyPrefab);
         var enemy = obj.GetComponent<Enemy.Enemy>();
         enemy.spawnPosition = spawnPosition;
