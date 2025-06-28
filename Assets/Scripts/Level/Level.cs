@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [System.Serializable]
@@ -45,6 +47,7 @@ public class LevelManager : MonoBehaviour
     private bool isSpawning = false;
     private bool isFinalBattle = false;
     private bool isLevelFinished = false;
+    public List<Vector2> RandomSkyPoints = new List<Vector2>(); // 随机生成敌人时，随机选择的位置点
 
     public enum LevelState
     {
@@ -261,6 +264,8 @@ public class LevelManager : MonoBehaviour
         
         foreach (var enemyPrefab in waveGroup.enemies)
         {
+            var length = RandomSkyPoints.Count;
+            enemyPrefab.transform.position = RandomSkyPoints[UnityEngine.Random.Range(0, length)];
             SpawnEnemy(enemyPrefab);
             yield return new WaitForSeconds(waveGroup.spawnInterval);
         }
