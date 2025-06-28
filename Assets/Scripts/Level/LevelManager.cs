@@ -50,6 +50,9 @@ public class LevelManager : MonoBehaviour
     private bool isLevelFinished = false;
     public List<Vector3> RandomSkyPoints = new List<Vector3>(); // 随机生成敌人时，随机选择的位置点
 
+    private int totalWaveEnenmy = 0;
+    private int spawnedEnemy = 0;
+    
     public enum LevelState
     {
         InProgress,
@@ -74,6 +77,9 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
+        normalWaveConfigs.ForEach(config => totalWaveEnenmy += config.waveGroups.Sum(group => group.enemies.Count));
+        specialWaveConfigs.ForEach(config => totalWaveEnenmy += config.waveGroup.enemies.Count);
+        
         // 初始化特殊波次触发记录
         foreach (var config in specialWaveConfigs)
         {
@@ -97,7 +103,8 @@ public class LevelManager : MonoBehaviour
         // 更新关卡进度
         if (currentState == LevelState.InProgress && !isSpawning)
         {
-            currentProgress += progressSpeed * Time.deltaTime;
+            // currentProgress += progressSpeed * Time.deltaTime;
+            currentProgress = 1f * spawnedEnemy / totalWaveEnenmy;
             currentProgress = Mathf.Clamp(currentProgress, 0f, 100f);
         }
 
@@ -280,6 +287,7 @@ public class LevelManager : MonoBehaviour
 
     private void SpawnEnemy(GameObject enemyPrefab, Vector3 spawnPosition)
     {
+        spawnedEnemy++;
         var enemy = enemyPrefab.GetComponent<Enemy.Enemy>();
         enemy.spawnPosition = spawnPosition;
         enemy.Respawn();
