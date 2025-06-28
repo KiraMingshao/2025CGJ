@@ -4,16 +4,16 @@ using UnityEngine;
 namespace Character {
     [Serializable]
     public class Status {
-        public readonly int maxHealth;
+        public int maxHealth;
         public int health;
-        public readonly int increaseResilience;
+        public int increaseResilience;
         public int resilience;
-        public readonly int maxImbalance;
+        public int maxImbalance;
         public int imbalance;
         public int attack;
         public float attackSpeed;
-        public readonly int maxEnergy;
-        public readonly int lowEnergyBoundary;
+        public int maxEnergy;
+        public int lowEnergyBoundary;
         public int energy;
         public float speed;
         public float maxJumpSpeed;
