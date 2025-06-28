@@ -38,7 +38,7 @@ public class LevelManager : MonoBehaviour
     public List<NormalWaveConfig> normalWaveConfigs; // 普通波次配置
     public List<SpecialWaveConfig> specialWaveConfigs; // 特殊波次配置
     public float progressSpeed = 1f; // 关卡进度增长速度(单位: %/秒)
-    public BattleUI battleUI;
+    //public BattleUI battleUI;
 
     private List<GameObject> activeEnemies = new List<GameObject>(); // 当前存活的敌人
     private Dictionary<SpecialWaveConfig, bool> specialWaveTriggered = new Dictionary<SpecialWaveConfig, bool>();
@@ -91,7 +91,7 @@ public class LevelManager : MonoBehaviour
         UpdateCurrentNormalWaveConfig();
 
         //设置UI关卡显示
-        battleUI.InitLevel(specialWaveConfigs);
+        BattleUI.Instance.InitLevel(specialWaveConfigs);
     }
 
     private void Update()
