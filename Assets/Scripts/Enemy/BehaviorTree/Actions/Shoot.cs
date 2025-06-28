@@ -4,6 +4,7 @@ namespace Enemy.BehaviorTree {
     public class ShootAction : Action {
         public float bulletSpeed;
         public int delayFrames;
+        public string shootTrigger;
         private Enemy enemy;
         private int framesLeft;
 
@@ -13,6 +14,7 @@ namespace Enemy.BehaviorTree {
 
         public override void OnStart() {
             this.framesLeft = this.delayFrames;
+            this.enemy.animator.SetTrigger(shootTrigger);
         }
 
         public override TaskStatus OnUpdate() {
