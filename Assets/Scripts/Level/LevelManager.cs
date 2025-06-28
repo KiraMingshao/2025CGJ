@@ -101,7 +101,7 @@ public class LevelManager : MonoBehaviour
         UpdateLevelState();
 
         // 更新关卡进度
-        if (currentState == LevelState.InProgress && !isSpawning)
+        if (currentState == LevelState.InProgress )
         {
             // currentProgress += progressSpeed * Time.deltaTime;
             currentProgress = 100f * spawnedEnemy / totalWaveEnenmy;
