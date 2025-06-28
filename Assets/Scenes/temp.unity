@@ -1022,8 +1022,8 @@ MonoBehaviour:
       - {fileID: 3260893188352361170, guid: 4d887c8a1fd73e74182129b71f269bff, type: 3}
       spawnInterval: 1
     randomSelection: 0
-    waveInterval: 30
-    killCountToNextWave: 3
+    waveInterval: 3
+    killCountToNextWave: 0
   specialWaveConfigs: []
   progressSpeed: 1
   battleUI: {fileID: 1808774932}
