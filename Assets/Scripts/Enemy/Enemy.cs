@@ -8,7 +8,7 @@ namespace Enemy {
         public Rigidbody2D rb { get; private set; }
         public Animator animator;
         public GameObject bullet;
-        public Transform spawnPosition;
+        public Vector3 spawnPosition;
 
         [Header("Properties")]
         public int health;
@@ -47,8 +47,8 @@ namespace Enemy {
         }
 
         public void Respawn() {
-            this.animator.SetTrigger(respawnTrigger);
-            this.transform.position = spawnPosition.position;
+            //this.animator?.SetTrigger(respawnTrigger);
+            this.transform.position = spawnPosition;
             this.rb.velocity = Vector2.zero;
         }
 

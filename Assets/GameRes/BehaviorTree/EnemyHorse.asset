@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b23f08d2ae4cba14087c1ed36193d82b, type: 3}
-  m_Name: EnemyBird
+  m_Name: EnemyHorse
   m_EditorClassIdentifier: 
   mBehaviorSource:
     behaviorName: Behavior
@@ -25,7 +25,7 @@ MonoBehaviour:
         Comparison","Instant":true,"SharedBoolbool1":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"isInit","IsShared":true,"IsGlobal":true,"BooleanmValue":true},"SharedBoolbool2":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}},{"Type":"BehaviorDesigner.Runtime.Tasks.Wait","NodeData":{"Offset":"(1.76834679,151.298523)"},"ID":4,"Name":"Wait","Instant":true,"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":0.5},"SharedBoolrandomWait":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedFloatrandomWaitMin":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedFloatrandomWaitMax":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1}},{"Type":"BehaviorDesigner.Runtime.Tasks.Unity.Math.BoolFlip","NodeData":{"Offset":"(133.306641,154.724091)"},"ID":5,"Name":"Bool
         Flip","Instant":true,"SharedBoolboolVariable":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"isInit","IsShared":true,"IsGlobal":true,"BooleanmValue":true}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(220,180)"},"ID":6,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"Enemy.BehaviorTree.ShootAction","NodeData":{"Offset":"(-85.45456,148.636353)"},"ID":7,"Name":"Shoot
         Action","Instant":true,"Int32delayFrames":3},{"Type":"Enemy.BehaviorTree.DashAction","NodeData":{"Offset":"(83.84299,149.649658)"},"ID":8,"Name":"Dash
-        Action","Instant":true,"SinglemoveSpeed":10,"SingledashSpeed":20,"Vector3startDashPosition":"(7.5,-1,0)","SingledashDistance":18,"Singleeps":0.05},{"Type":"BehaviorDesigner.Runtime.Tasks.Wait","NodeData":{"Offset":"(236.278381,146.483154)"},"ID":9,"Name":"Wait","Instant":true,"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedBoolrandomWait":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedFloatrandomWaitMin":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedFloatrandomWaitMax":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1}}]}]}}'
+        Action","Instant":true,"SinglemoveSpeed":6,"SingledashSpeed":20,"Vector3startDashPosition":"(7.5,-1,0)","SingledashDistance":18,"Singleeps":0.05},{"Type":"BehaviorDesigner.Runtime.Tasks.Wait","NodeData":{"Offset":"(236.278381,146.483154)"},"ID":9,"Name":"Wait","Instant":true,"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedBoolrandomWait":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedFloatrandomWaitMin":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedFloatrandomWaitMax":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1}}]}]}}'
       fieldSerializationData:
         typeName: []
         fieldNameHash: 
