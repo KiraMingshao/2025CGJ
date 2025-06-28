@@ -188,6 +188,9 @@ MonoBehaviour:
   sweepCollider: {fileID: 4423217693252316746}
   chopUpCollider: {fileID: 7820988598842210330}
   chopDownCollider: {fileID: 7820988598842210330}
+  wave: {fileID: 7670314289175885406, guid: 37d240c9ed794154ba507f2e165c871d, type: 3}
+  waveStrengthFactor: 0.8
+  waveVelocityFactor: 5
   jumpCharge: 0
   rb: {fileID: 0}
 --- !u!114 &-2919792055169629082
@@ -221,6 +224,13 @@ MonoBehaviour:
     resilienceIncrease: 5
     attackIncrease: 3
     attackSpeedIncrease: 1.5
+  imbalanceGainCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  attackImbalanceIncrease: 3
 --- !u!114 &-1883979909244085222
 MonoBehaviour:
   m_ObjectHideFlags: 0
