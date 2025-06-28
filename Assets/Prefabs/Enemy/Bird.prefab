@@ -10,12 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 4210808247674834787}
   - component: {fileID: 448861637}
-  - component: {fileID: 4484905688595441141}
   - component: {fileID: 448861633}
+  - component: {fileID: 4484905688595441141}
   - component: {fileID: 8917406104023605156}
-  m_Layer: 0
+  - component: {fileID: 7089101223250490977}
+  m_Layer: 7
   m_Name: Bird
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -85,27 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &4484905688595441141
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3260893188352361170}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 6200000, guid: 7bb9121ba2b5fb846a4d8a380df51a1d, type: 2}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
-  m_Constraints: 4
 --- !u!114 &448861633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,8 +100,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startWhenEnabled: 1
   asynchronousLoad: 0
-  pauseWhenDisabled: 0
-  restartWhenComplete: 0
+  pauseWhenDisabled: 1
+  restartWhenComplete: 1
   logTaskChanges: 0
   group: 0
   resetValuesOnRestart: 0
@@ -146,6 +126,27 @@ MonoBehaviour:
       Version: 1.7.5
   gizmoViewMode: 2
   showBehaviorDesignerGizmo: 1
+--- !u!50 &4484905688595441141
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3260893188352361170}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 6200000, guid: 7bb9121ba2b5fb846a4d8a380df51a1d, type: 2}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!61 &8917406104023605156
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -172,3 +173,29 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.41800433, y: 1.2909975}
   m_EdgeRadius: 0
+--- !u!114 &7089101223250490977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3260893188352361170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db4aa208831e6154d89f1633a2453c41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackCollider: {fileID: 8917406104023605156}
+  bodyCollider: {fileID: 8917406104023605156}
+  animator: {fileID: 0}
+  bullet: {fileID: 8880025452507042074, guid: 84b31a40191f12e47984a96c4d03d420, type: 3}
+  spawnPosition: {fileID: 0}
+  health: 10
+  attack: 3
+  resilience: 1
+  imbalance: 0
+  maxImbalance: 20
+  additionalAttack: 0
+  attackTrigger: 
+  chargeTrigger: 
+  respawnTrigger: 
