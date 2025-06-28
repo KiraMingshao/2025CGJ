@@ -8,7 +8,9 @@ namespace AI.FSM {
         public Character.Character character { get; private set; }
         public Collider2D footCollider;
         public Collider2D bodyCollider;
-        public Collider2D attackCollider;
+        public Collider2D sweepCollider;
+        public Collider2D chopUpCollider;
+        public Collider2D chopDownCollider;
 
         [HideInInspector]
         public float jumpCharge;
@@ -17,7 +19,9 @@ namespace AI.FSM {
 
         protected override void Init() {
             this.character = this.GetComponent<Character.Character>();
-            this.attackCollider.enabled = false;
+            this.sweepCollider.enabled = false;
+            this.chopUpCollider.enabled = false;
+            this.chopDownCollider.enabled = false;
             this.rb = this.GetComponent<Rigidbody2D>();
         }
 
