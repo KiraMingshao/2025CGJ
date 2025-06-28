@@ -282,6 +282,7 @@ public class LevelManager : MonoBehaviour
     private void SpawnEnemy(GameObject enemyPrefab)
     {
         enemyPrefab.GetComponent<Enemy.Enemy>().Respawn();
+        activeEnemies.Add(enemyPrefab);
     }
 
     public void OnEnemyDeath(GameObject enemy)
