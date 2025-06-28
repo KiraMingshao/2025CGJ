@@ -9,6 +9,7 @@ namespace Character {
         public StatusDecorator decorator;
         [Header("Imbalance")]
         public int attackImbalanceIncrease;
+        public int combactForce;
 
         private void Awake() {
             this.decorator = new DefaultDecorator(decoratorParams);
@@ -20,6 +21,13 @@ namespace Character {
 
         private void Update() {
             this.AddImbalance(this.GetImbalanceGain());
+            this.ImbalanceCombact();
+        }
+
+        private void ImbalanceCombact() {
+            var value = Input.GetAxis("ImbalanceCombact");
+            var delta = Mathf.RoundToInt(value * combactForce * Time.deltaTime * 100);
+            this.status.imbalance += delta;
         }
 
         private int GetRandomDirection() {
@@ -39,5 +47,13 @@ namespace Character {
                 this.status.imbalance += (this.status.imbalance > 0 ? 1 : -1) * delta;
             }
         }
+
+        //public void ReduceImbalance(int delta) {
+        //    if (this.GetDecoratedStatus().imbalance == 0) {
+        //        return;
+        //    }
+        //    int maxDelta = Mathf.Max(delta, Mathf.Abs(this.GetDecoratedStatus().imbalance));
+        //    this.status.imbalance -= (this.status.imbalance > 0 ? 1 : -1) * maxDelta;
+        //}
     }
 }
