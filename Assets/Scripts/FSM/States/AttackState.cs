@@ -31,7 +31,7 @@ namespace AI.FSM {
         public override void OnStateFixedStay(FSMBase fsm) {
             if (fsm is CharacterBattleActionFSM characterFSM) {
                 List<Collider2D> result = new List<Collider2D>();
-                this.attackCollider.OverlapCollider(new ContactFilter2D() { layerMask = LayerMask.GetMask("Enemy") | LayerMask.GetMask("Bullet") }, result);
+                this.attackCollider.OverlapCollider(new ContactFilter2D() { layerMask = LayerMask.GetMask("Enemy") | LayerMask.GetMask("EnemyBullet") }, result);
                 foreach (var collider in result) {
                     if (collider.CompareTag("Enemy")) {
                         Enemy.Enemy enemy = collider.GetComponent<Enemy.Enemy>();
@@ -41,6 +41,7 @@ namespace AI.FSM {
                         bulletController.attack += characterFSM.character.GetDecoratedStatus().attack;
                         Rigidbody2D rigidbody = collider.GetComponent<Rigidbody2D>();
                         rigidbody.velocity = rigidbody.velocity * -3;
+                        bulletController.gameObject.tag = "PlayerBullet";
                     }
                 }
             }

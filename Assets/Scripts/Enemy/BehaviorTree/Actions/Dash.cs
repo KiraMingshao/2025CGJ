@@ -6,6 +6,7 @@ namespace Enemy.BehaviorTree {
         public float moveSpeed;
         public float dashSpeed;
         public Vector3 startDashPosition;
+        public Vector3 endDashPosition;
         public float eps = 0.05f;
         private Enemy enemy;
 
@@ -20,7 +21,11 @@ namespace Enemy.BehaviorTree {
                 return TaskStatus.Running;
             } else {
                 this.enemy.rb.velocity = this.dashSpeed * 100 * Time.deltaTime * Vector2.left;
-                return TaskStatus.Success;
+                if (Mathf.Abs(Vector3.Distance(this.transform.position, this.endDashPosition)) < eps) {
+                    this.enemy.Respawn();
+                    return TaskStatus.Success;
+                }
+                return TaskStatus.Running;
             }
         }
     }

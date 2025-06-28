@@ -26,10 +26,10 @@ public class BulletController : MonoBehaviour {
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if (other.CompareTag("Enemy")) {
+        if (other.CompareTag("Enemy") && this.CompareTag("PlayerBullet")) {
             Enemy.Enemy enemy = other.GetComponent<Enemy.Enemy>();
             enemy.health -= attack;
-        } else if (other.CompareTag("Player")) {
+        } else if (other.CompareTag("Player") && this.CompareTag("EnemyBullet")) {
             Character.Character character = other.GetComponent<Character.Character>();
             character.status.health -= attack;
         }

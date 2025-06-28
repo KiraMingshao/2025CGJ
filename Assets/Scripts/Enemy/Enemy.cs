@@ -41,8 +41,8 @@ namespace Enemy {
         }
 
         public void Shoot() {
-            var offset = new Vector3(-this.attackCollider.bounds.extents.x / 2, 0f);
-            var newBullet = Instantiate(bullet, this.transform.position + offset, Quaternion.identity);
+            var newBullet = Instantiate(bullet, this.transform.position, Quaternion.identity);
+            newBullet.tag = "EnemyBullet";
             newBullet.GetComponent<BulletController>().attack = this.attack;
         }
 
