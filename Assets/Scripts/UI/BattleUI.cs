@@ -13,7 +13,7 @@ public class BattleUI : MonoBehaviour
     public EnergyItem startItem;
     public EnergyItem endItem;
     public List<GameObject> stars;
-    private List<EnergyItem> energyItems;
+    private List<EnergyItem> energyItems = new List<EnergyItem>();
 
     public void Init(int maxHealth, int maxEnergy)
     {
@@ -23,10 +23,15 @@ public class BattleUI : MonoBehaviour
         levelSlider.value = 0;
         balanceSlider.value = 0;
         CreateEnergy(maxEnergy);
+
     }
 
     public void InitLevel(List<SpecialWaveConfig> specialWaveConfigs)
     {
+        var character = GameLauncher.Instance.player.GetComponent<Character.Character>();
+
+        Init(character.status.maxHealth, character.status.maxEnergy);
+
         for (int i = 0; i < stars.Count; i++)
         {
             if (i<specialWaveConfigs.Count)
@@ -80,8 +85,9 @@ public class BattleUI : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
-        energyItems.AddRange(energyContent.GetComponentsInChildren<EnergyItem>());
+    {      
+        var items = energyContent.GetComponentsInChildren<EnergyItem>();
+        energyItems.AddRange(items);
     }
 
     // Update is called once per frame
