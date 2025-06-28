@@ -57,6 +57,13 @@ namespace Enemy {
             int strength = Mathf.FloorToInt(attack * waveStrengthFactor * this.transform.localScale.y);
             newWave.GetComponent<WaveController>().strength = strength;
             newWave.GetComponent<Rigidbody2D>().velocity = waveVelocityFactor / strength * Vector2.left;
+            var oldy = newWave.transform.localScale.y;
+            newWave.transform.localScale = new Vector2(Mathf.Abs(newWave.transform.localScale.x) * -1, strength);
+            newWave.transform.position = new Vector3(
+                newWave.transform.position.x,
+                newWave.transform.position.y + (oldy - newWave.transform.localScale.y) / 2f,
+                newWave.transform.position.z
+            );
         }
 
         public void Respawn() {

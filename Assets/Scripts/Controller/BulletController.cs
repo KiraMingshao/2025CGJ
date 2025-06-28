@@ -31,10 +31,12 @@ public class BulletController : MonoBehaviour {
         if (other.CompareTag("Enemy") && this.CompareTag("PlayerBullet")) {
             Enemy.Enemy enemy = other.GetComponent<Enemy.Enemy>();
             enemy.health -= attack;
+            enemy.imbalance += Mathf.Max(attack - enemy.resilience);
             Destroy(this.gameObject);
         } else if (other.CompareTag("Player") && this.CompareTag("EnemyBullet")) {
             Character.Character character = other.GetComponent<Character.Character>();
             character.status.health -= attack;
+            character.status.imbalance += Mathf.Max(attack - character.GetDecoratedStatus().resilience);
             Destroy(this.gameObject);
         }
     }
