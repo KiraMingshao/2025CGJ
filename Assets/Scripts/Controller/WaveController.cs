@@ -38,7 +38,7 @@ public class WaveController : MonoBehaviour {
             Destroy(this.gameObject);
         } else if (collision.CompareTag("Player") && this.CompareTag("EnemyWave")) {
             Character.Character character = collision.GetComponent<Character.Character>();
-            character.status.imbalance += Mathf.Max(0, this.strength - character.GetDecoratedStatus().resilience);
+            character.AddImbalance(Mathf.Max(0, this.strength - character.GetDecoratedStatus().resilience));
             Destroy(this.gameObject);
         }
     }

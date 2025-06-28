@@ -26,7 +26,7 @@ namespace AI.FSM {
                 this.attackCollider = this.getAttackCollider(characterFSM);
                 this.attackCollider.enabled = true;
 
-                characterFSM.character.status.imbalance += characterFSM.character.attackImbalanceIncrease;
+                characterFSM.character.AddImbalance(characterFSM.character.attackImbalanceIncrease);
 
                 if (InputQueue.Instance.LastPressedKey == "ChopDown") {
                     var wave = Object.Instantiate(characterFSM.wave, characterFSM.transform.position, Quaternion.identity);

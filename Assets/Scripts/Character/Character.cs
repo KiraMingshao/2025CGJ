@@ -19,11 +19,7 @@ namespace Character {
         }
 
         private void Update() {
-            if (this.GetDecoratedStatus().imbalance == 0) {
-                this.status.imbalance = this.GetRandomDirection() * this.GetImbalanceGain();
-            } else {
-                this.status.imbalance += this.GetImbalanceGain() * (this.status.imbalance > 0 ? 1 : -1);
-            }
+            this.AddImbalance(this.GetImbalanceGain());
         }
 
         private int GetRandomDirection() {
@@ -33,6 +29,14 @@ namespace Character {
 
         private int GetImbalanceGain() {
             return Mathf.RoundToInt(imbalanceGainCurve[Mathf.Abs(this.GetDecoratedStatus().imbalance)].value);
+        }
+
+        public void AddImbalance(int delta) {
+            if (this.GetDecoratedStatus().imbalance == 0) {
+                this.status.imbalance = this.GetRandomDirection() * delta;
+            } else {
+                this.status.imbalance += (this.status.imbalance > 0 ? 1 : -1) * delta;
+            }
         }
     }
 }

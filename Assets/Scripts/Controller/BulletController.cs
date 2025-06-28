@@ -36,7 +36,7 @@ public class BulletController : MonoBehaviour {
         } else if (other.CompareTag("Player") && this.CompareTag("EnemyBullet")) {
             Character.Character character = other.GetComponent<Character.Character>();
             character.status.health -= attack;
-            character.status.imbalance += Mathf.Max(attack - character.GetDecoratedStatus().resilience);
+            character.AddImbalance(Mathf.Max(attack - character.GetDecoratedStatus().resilience));
             Destroy(this.gameObject);
         }
     }
