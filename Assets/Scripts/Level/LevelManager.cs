@@ -269,8 +269,7 @@ public class LevelManager : MonoBehaviour
         foreach (var enemyPrefab in waveGroup.enemies)
         {
             var length = RandomSkyPoints.Count;
-            enemyPrefab.transform.position = RandomSkyPoints[UnityEngine.Random.Range(0, length)];
-            SpawnEnemy(enemyPrefab);
+            SpawnEnemy(enemyPrefab, RandomSkyPoints[UnityEngine.Random.Range(0, length)]);
             yield return new WaitForSeconds(waveGroup.spawnInterval);
         }
 
@@ -279,9 +278,11 @@ public class LevelManager : MonoBehaviour
         lastWaveTime = Time.time;
     }
 
-    private void SpawnEnemy(GameObject enemyPrefab)
+    private void SpawnEnemy(GameObject enemyPrefab, Vector3 spawnPosition)
     {
-        enemyPrefab.GetComponent<Enemy.Enemy>().Respawn();
+        var enemy = enemyPrefab.GetComponent<Enemy.Enemy>();
+        enemy.spawnPosition = spawnPosition;
+        enemy.Respawn();
         activeEnemies.Add(enemyPrefab);
     }
 
