@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Enemy.BehaviorTree {
     public class MoveAction : Action {
-        public float speed;
+        public Vector2 speed;
         private Rigidbody2D rb;
 
         public override void OnAwake() {
@@ -11,7 +11,7 @@ namespace Enemy.BehaviorTree {
         }
 
         public override TaskStatus OnUpdate() {
-            this.rb.velocity = new Vector2(speed * Time.deltaTime * 100, this.rb.velocity.y);
+            this.rb.velocity = 100 * Time.deltaTime * speed;
             return TaskStatus.Running;
         }
 
