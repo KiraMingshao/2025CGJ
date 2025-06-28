@@ -255,9 +255,9 @@ MonoBehaviour:
   imbalance: 0
   maxImbalance: 20
   additionalAttack: 0
-  attackTrigger: 
-  chargeTrigger: 
-  respawnTrigger: 
+  attackTrigger: Attack
+  chargeTrigger: Charge
+  respawnTrigger: Respawn
 --- !u!95 &4584765572193431992
 Animator:
   serializedVersion: 3
