@@ -26,12 +26,21 @@ namespace AI.FSM {
                 this.attackCollider = this.getAttackCollider(characterFSM);
                 this.attackCollider.enabled = true;
 
+                characterFSM.character.status.imbalance += characterFSM.character.attackResilienceIncrease;
+
                 if (InputQueue.Instance.LastPressedKey == "ChopDown") {
                     var wave = Object.Instantiate(characterFSM.wave, characterFSM.transform.position, Quaternion.identity);
                     wave.tag = "PlayerWave";
                     int strength = Mathf.FloorToInt(characterFSM.character.GetDecoratedStatus().attack * characterFSM.waveStrengthFactor * characterFSM.transform.localScale.y);
                     wave.GetComponent<WaveController>().strength = strength;
                     wave.GetComponent<Rigidbody2D>().velocity = characterFSM.waveVelocityFactor / strength * Vector2.right;
+                    var oldy = wave.transform.localScale.y;
+                    wave.transform.localScale = new Vector2(Mathf.Abs(wave.transform.localScale.x) * -1, strength);
+                    wave.transform.position = new Vector3(
+                        wave.transform.position.x,
+                        wave.transform.position.y + (oldy - wave.transform.localScale.y) / 2f,
+                        wave.transform.position.z
+                    );
                 }
             }
         }
