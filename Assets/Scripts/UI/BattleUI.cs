@@ -6,6 +6,8 @@ using DG.Tweening;
 
 public class BattleUI : MonoBehaviour
 {
+    public static BattleUI Instance { get; private set; }
+
     public Slider hpSlider;
     public Slider levelSlider;
     public Slider balanceSlider;
@@ -14,6 +16,18 @@ public class BattleUI : MonoBehaviour
     public EnergyItem endItem;
     public List<GameObject> stars;
     private List<EnergyItem> energyItems = new List<EnergyItem>();
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     public void Init(int maxHealth, int maxEnergy)
     {
