@@ -104,7 +104,7 @@ public class LevelManager : MonoBehaviour
         if (currentState == LevelState.InProgress && !isSpawning)
         {
             // currentProgress += progressSpeed * Time.deltaTime;
-            currentProgress = 1f * spawnedEnemy / totalWaveEnenmy;
+            currentProgress = 100f * spawnedEnemy / totalWaveEnenmy;
             currentProgress = Mathf.Clamp(currentProgress, 0f, 100f);
         }
 
