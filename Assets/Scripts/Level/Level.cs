@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [System.Serializable]
@@ -45,6 +47,7 @@ public class LevelManager : MonoBehaviour
     private bool isSpawning = false;
     private bool isFinalBattle = false;
     private bool isLevelFinished = false;
+    public List<Vector2> RandomSkyPoints = new List<Vector2>(); // 随机生成敌人时，随机选择的位置点
 
     public enum LevelState
     {
@@ -261,6 +264,8 @@ public class LevelManager : MonoBehaviour
         
         foreach (var enemyPrefab in waveGroup.enemies)
         {
+            var length = RandomSkyPoints.Count;
+            enemyPrefab.transform.position = RandomSkyPoints[UnityEngine.Random.Range(0, length)];
             SpawnEnemy(enemyPrefab);
             yield return new WaitForSeconds(waveGroup.spawnInterval);
         }
@@ -272,13 +277,7 @@ public class LevelManager : MonoBehaviour
 
     private void SpawnEnemy(GameObject enemyPrefab)
     {
-        // 这里实现敌人的实际生成逻辑
-        // 示例:
-        // var enemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
-        // activeEnemies.Add(enemy);
-        
-        // 可能需要设置敌人的死亡回调
-        // enemy.GetComponent<Enemy>().OnDeath += () => OnEnemyDeath(enemy);
+        enemyPrefab.GetComponent<Enemy.Enemy>().Respawn();
     }
 
     public void OnEnemyDeath(GameObject enemy)
