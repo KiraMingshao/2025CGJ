@@ -15,13 +15,13 @@ namespace Enemy.BehaviorTree {
         }
 
         public override TaskStatus OnUpdate() {
-            if (Mathf.Abs(Vector3.Distance(this.transform.position, this.startDashPosition)) > eps) {
+            if (Vector3.Distance(this.transform.position, this.startDashPosition) > eps * this.moveSpeed) {
                 Vector3 direction = (this.startDashPosition - this.transform.position).normalized;
                 this.enemy.rb.velocity = direction * this.moveSpeed * Time.deltaTime * 100;
                 return TaskStatus.Running;
             } else {
                 this.enemy.rb.velocity = this.dashSpeed * 100 * Time.deltaTime * Vector2.left;
-                if (Mathf.Abs(Vector3.Distance(this.transform.position, this.endDashPosition)) < eps) {
+                if (Vector3.Distance(this.transform.position, this.endDashPosition) < eps * this.dashSpeed) {
                     this.enemy.Respawn();
                     return TaskStatus.Success;
                 }
