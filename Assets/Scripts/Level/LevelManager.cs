@@ -42,8 +42,10 @@ public class LevelManager : MonoBehaviour
 
     private List<GameObject> activeEnemies = new List<GameObject>(); // 当前存活的敌人
     private Dictionary<SpecialWaveConfig, bool> specialWaveTriggered = new Dictionary<SpecialWaveConfig, bool>();
+
     private NormalWaveConfig currentNormalWaveConfig;
-    private int currentWaveGroupIndex = 0;
+
+    // private int currentWaveGroupIndex = 0;
     private float lastWaveTime = 0f;
     private bool isWaitingForNextWave = false;
     private bool isSpawning = false;
@@ -53,7 +55,9 @@ public class LevelManager : MonoBehaviour
 
     private float processWaveTime = 0;
     private float totalWaveTime = 0;
-    
+
+    private int totalKillCount = 0;
+
     public enum LevelState
     {
         InProgress,
@@ -78,9 +82,23 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        normalWaveConfigs.ForEach(config => totalWaveTime += config.waveInterval * config.waveGroups.Sum(group => group.enemies.Count));
-        specialWaveConfigs.ForEach(config => totalWaveTime += config.waveGroup.spawnInterval * config.waveGroup.enemies.Count);
-        
+        processWaveTime = 0f; // 确保初始值为0
+
+        // 计算总波次时间
+        normalWaveConfigs.ForEach(config =>
+        {
+            totalWaveTime += config.waveInterval * (config.waveGroups.Count - 1);
+            foreach (var group in config.waveGroups)
+            {
+                totalWaveTime += group.spawnInterval * (group.enemies.Count - 1);
+            }
+        });
+
+        specialWaveConfigs.ForEach(config =>
+        {
+            totalWaveTime += config.waveGroup.spawnInterval * (config.waveGroup.enemies.Count - 1);
+        });
+
         // 初始化特殊波次触发记录
         foreach (var config in specialWaveConfigs)
         {
@@ -98,18 +116,21 @@ public class LevelManager : MonoBehaviour
     {
         if (isLevelFinished) return;
 
+        // 只在非蹲下状态时更新内部刷新时间
+        if (GameLauncher.Instance.player.GetComponent<CharacterBattleActionFSM>().CurrentState !=
+            AI.FSM.FSMStateID.Crouch)
+        {
+            // 只在非蹲下状态时增加波次处理时间
+            processWaveTime += Time.deltaTime;
+            processWaveTime = Mathf.Clamp(processWaveTime, 0f, totalWaveTime);
+        }
+
+        // 更新关卡进度（基于processWaveTime计算）
+        currentProgress = 100f * processWaveTime / totalWaveTime;
+        currentProgress = Mathf.Clamp(currentProgress, 0f, 100f);
+
         // 更新关卡状态
         UpdateLevelState();
-
-        // 更新关卡进度
-        if (currentState == LevelState.InProgress )
-        {
-            if (GameLauncher.Instance.player.GetComponent<CharacterBattleActionFSM>().CurrentState != AI.FSM.FSMStateID.Crouch)
-            {
-                currentProgress = 100f * processWaveTime / totalWaveTime;
-                currentProgress = Mathf.Clamp(currentProgress, 0f, 100f);
-            }
-        }
 
         // 检查是否需要更新波次配置
         UpdateCurrentNormalWaveConfig();
@@ -168,13 +189,14 @@ public class LevelManager : MonoBehaviour
             // if (enemy.GetComponent<Enemy>().isBoss)
             //     return true;
         }
+
         return false;
     }
 
     private void UpdateCurrentNormalWaveConfig()
     {
-        if (currentNormalWaveConfig != null && 
-            currentProgress >= currentNormalWaveConfig.startProgress && 
+        if (currentNormalWaveConfig != null &&
+            currentProgress >= currentNormalWaveConfig.startProgress &&
             currentProgress <= currentNormalWaveConfig.endProgress)
         {
             return; // 当前配置仍然有效
@@ -186,7 +208,7 @@ public class LevelManager : MonoBehaviour
             if (currentProgress >= config.startProgress && currentProgress <= config.endProgress)
             {
                 currentNormalWaveConfig = config;
-                currentWaveGroupIndex = 0;
+                // currentWaveGroupIndex = 0;
                 lastWaveTime = Time.time;
                 isWaitingForNextWave = false;
                 break;
@@ -215,17 +237,14 @@ public class LevelManager : MonoBehaviour
         if (currentNormalWaveConfig.killCountToNextWave > 0)
         {
             int totalKillsNeeded = currentNormalWaveConfig.killCountToNextWave;
-            if (isWaitingForNextWave)
-            {
-                totalKillsNeeded += GetRemainingEnemiesFromLastWave();
-            }
 
-            if (GetTotalKills() >= totalKillsNeeded)
+            if (totalKillCount >= totalKillsNeeded)
             {
                 isWaitingForNextWave = false;
                 lastWaveTime = Time.time;
-                SpawnNextWave();
+                StartCoroutine(SpawnNextWave());
             }
+
             return;
         }
 
@@ -236,51 +255,36 @@ public class LevelManager : MonoBehaviour
         // 时间间隔检查
         if (!isWaitingForNextWave && !isSpawning && Time.time - lastWaveTime >= currentNormalWaveConfig.waveInterval)
         {
-            SpawnNextWave();
+            StartCoroutine(SpawnNextWave());
         }
     }
 
-    private int GetRemainingEnemiesFromLastWave()
+    private IEnumerator SpawnNextWave()
     {
-        // 计算上一波剩余的敌人数量
-        // 可能需要记录每波生成的敌人
-        return 0;
-    }
-
-    private int GetTotalKills()
-    {
-        // 从统计中获取总击杀数
-        // return GameStats.TotalKills;
-        return 0;
-    }
-
-    private void SpawnNextWave()
-    {
-        if (currentNormalWaveConfig.waveGroups.Count == 0) return;
-
-        WaveGroup nextWaveGroup;
-        if (currentNormalWaveConfig.randomSelection)
+        if (currentNormalWaveConfig.randomSelection && currentNormalWaveConfig.waveGroups.Count > 0)
         {
-            nextWaveGroup = currentNormalWaveConfig.waveGroups[UnityEngine.Random.Range(0, currentNormalWaveConfig.waveGroups.Count)];
+            var nextWaveGroup =
+                currentNormalWaveConfig.waveGroups[
+                    UnityEngine.Random.Range(0, currentNormalWaveConfig.waveGroups.Count)];
+            StartCoroutine(SpawnWaveGroup(nextWaveGroup));
         }
         else
         {
-            nextWaveGroup = currentNormalWaveConfig.waveGroups[currentWaveGroupIndex];
-            currentWaveGroupIndex = (currentWaveGroupIndex + 1) % currentNormalWaveConfig.waveGroups.Count;
+            foreach (var waveGroup in currentNormalWaveConfig.waveGroups)
+            {
+                StartCoroutine(SpawnWaveGroup(waveGroup));
+                yield return new WaitForSeconds(currentNormalWaveConfig.waveInterval);
+            }
         }
-
-        StartCoroutine(SpawnWaveGroup(nextWaveGroup));
     }
 
     private IEnumerator SpawnWaveGroup(WaveGroup waveGroup)
     {
         isSpawning = true;
-        
+
         foreach (var enemyPrefab in waveGroup.enemies)
         {
-            var length = RandomSkyPoints.Count;
-
-            SpawnEnemy(enemyPrefab, RandomSkyPoints[UnityEngine.Random.Range(0, length)]);
+            SpawnEnemy(enemyPrefab);
             yield return new WaitForSeconds(waveGroup.spawnInterval);
         }
 
@@ -289,13 +293,18 @@ public class LevelManager : MonoBehaviour
         lastWaveTime = Time.time;
     }
 
-    private void SpawnEnemy(GameObject enemyPrefab, Vector3 spawnPosition)
+    private void SpawnEnemy(GameObject enemyPrefab)
     {
         var obj = GameObject.Instantiate(enemyPrefab);
         var enemy = obj.GetComponent<Enemy.Enemy>();
-        enemy.spawnPosition = spawnPosition;
+        if (enemy.isAir)
+        {
+            var length = RandomSkyPoints.Count;
+            enemy.spawnPosition = RandomSkyPoints[UnityEngine.Random.Range(0, length)];
+        }
+
         enemy.Respawn();
-        activeEnemies.Add(enemyPrefab);
+        activeEnemies.Add(obj);
     }
 
     public void OnEnemyDeath(GameObject enemy)
@@ -304,6 +313,8 @@ public class LevelManager : MonoBehaviour
         {
             activeEnemies.Remove(enemy);
         }
+
+        totalKillCount++;
 
         // 检查是否满足胜利条件
         if (isFinalBattle && activeEnemies.Count == 0)

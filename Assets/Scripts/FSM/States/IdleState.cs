@@ -25,13 +25,13 @@ namespace AI.FSM
         {
             if (fsm is CharacterBattleActionFSM characterFSM)
             {
-
+                characterFSM.transform.DOKill();
             }
         }
 
         private void StartShake(CharacterBattleActionFSM characterFSM)
         {
-
+            /*
             characterFSM.transform.DORotate(new UnityEngine.Vector3(0, 0, 30), (float)(30 - characterFSM.transform.eulerAngles.z) * 0.2f).OnComplete(
               () =>
               {
@@ -42,7 +42,17 @@ namespace AI.FSM
 
                   seq.SetLoops(-1);
               }
-            );           
+
+            );           */
+
+     
+
+            Sequence seq = DOTween.Sequence();
+            //添加动画到序列中
+            seq.Append(characterFSM.transform.DORotate(new UnityEngine.Vector3(-15, 0, -10), 0.5f));
+            seq.Append(characterFSM.transform.DORotate(new UnityEngine.Vector3(15, 0, 10), 0.5f));
+
+            seq.SetLoops(-1);
         }
 
     }
