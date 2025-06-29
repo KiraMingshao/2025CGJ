@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7187906111427101595}
   - component: {fileID: 854317361959478432}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,9 +72,9 @@ GameObject:
   - component: {fileID: 8917406104023605156}
   - component: {fileID: -2144718374023439127}
   - component: {fileID: 2725283143213779839}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Spider
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -295,7 +295,7 @@ GameObject:
   - component: {fileID: 2872588585639015246}
   - component: {fileID: 5442280349306801270}
   - component: {fileID: 6986437944365748120}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -390,6 +390,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5357931824926596302}
     m_Modifications:
+    - target: {fileID: 508448695238877200, guid: 90345a75ea88a104282013d1d7fbcba4, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2358006411375503221, guid: 90345a75ea88a104282013d1d7fbcba4, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4910875262959803790, guid: 90345a75ea88a104282013d1d7fbcba4, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -490,9 +498,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5534944517630616591, guid: 90345a75ea88a104282013d1d7fbcba4, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7814687334991113188, guid: 90345a75ea88a104282013d1d7fbcba4, type: 3}
       propertyPath: m_Name
       value: EnemySlider
+      objectReference: {fileID: 0}
+    - target: {fileID: 7814687334991113188, guid: 90345a75ea88a104282013d1d7fbcba4, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7872853694437090550, guid: 90345a75ea88a104282013d1d7fbcba4, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90345a75ea88a104282013d1d7fbcba4, type: 3}
