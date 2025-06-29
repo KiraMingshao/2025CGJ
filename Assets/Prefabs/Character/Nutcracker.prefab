@@ -101,7 +101,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.42782366, y: -0.073494434}
+  m_Offset: {x: 0.5, y: -0.073494434}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -112,7 +112,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.895232, y: 2.334816}
+  m_Size: {x: 1.5, y: 2.334816}
   m_EdgeRadius: 0
 --- !u!1 &6031166209887633097
 GameObject:
@@ -266,11 +266,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   status:
-    maxHealth: 50
-    health: 50
+    maxHealth: 60
+    health: 60
     increaseResilience: 3
     resilience: 2
-    maxImbalance: 100
+    maxImbalance: 150
     imbalance: 1
     attack: 4
     attackSpeed: 1
@@ -279,9 +279,9 @@ MonoBehaviour:
     energy: 0
     speed: 0
     maxJumpSpeed: 10
-    jumpChargeSpeed: 0.75
+    jumpChargeSpeed: 1
   decoratorParams:
-    resilienceIncrease: 5
+    resilienceIncrease: 2
     attackIncrease: 3
     attackSpeedIncrease: 1.5
   imbalanceGainCurve:
@@ -308,7 +308,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  attackImbalanceIncrease: 3
+  attackImbalanceIncrease: 6
   combactForce: 1
 --- !u!114 &-1883979909244085222
 MonoBehaviour:

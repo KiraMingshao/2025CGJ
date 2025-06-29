@@ -181,11 +181,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startWhenEnabled: 1
   asynchronousLoad: 0
-  pauseWhenDisabled: 0
+  pauseWhenDisabled: 1
   restartWhenComplete: 1
   logTaskChanges: 0
   group: 0
-  resetValuesOnRestart: 1
+  resetValuesOnRestart: 0
   externalBehavior: {fileID: 11400000, guid: dacbf81fb4c360e4bad4d816443d6992, type: 2}
   mBehaviorSource:
     behaviorName: Behavior
@@ -274,7 +274,7 @@ MonoBehaviour:
   secondsBeforeDestroy: 5
   health: 25
   attack: 4
-  resilience: 3
+  resilience: 2
   imbalance: 0
   maxImbalance: 20
   isAir: 0
