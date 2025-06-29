@@ -53,6 +53,9 @@ public class WaveController : MonoBehaviour {
             }
         } else if (collision.CompareTag("Enemy") && this.CompareTag("PlayerWave")) {
             Enemy.Enemy enemy = collision.GetComponent<Enemy.Enemy>();
+            if (enemy.isAir) {
+                return;
+            }
             enemy.imbalance += Mathf.Max(0, this.strength - enemy.resilience);
             Destroy(this.gameObject);
         } else if (collision.CompareTag("Player") && this.CompareTag("EnemyWave")) {
