@@ -121,7 +121,7 @@ public class LevelManager : MonoBehaviour
             AI.FSM.FSMStateID.Crouch)
         {
             // 只在非蹲下状态时增加波次处理时间
-            processWaveTime += Time.deltaTime;
+            processWaveTime += Time.deltaTime * progressSpeed;
             processWaveTime = Mathf.Clamp(processWaveTime, 0f, totalWaveTime);
         }
 
