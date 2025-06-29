@@ -42,7 +42,9 @@ public class LevelManager : MonoBehaviour
 
     private List<GameObject> activeEnemies = new List<GameObject>(); // 当前存活的敌人
     private Dictionary<SpecialWaveConfig, bool> specialWaveTriggered = new Dictionary<SpecialWaveConfig, bool>();
+
     private NormalWaveConfig currentNormalWaveConfig;
+
     // private int currentWaveGroupIndex = 0;
     private float lastWaveTime = 0f;
     private bool isWaitingForNextWave = false;
@@ -53,6 +55,8 @@ public class LevelManager : MonoBehaviour
 
     private float processWaveTime = 0;
     private float totalWaveTime = 0;
+
+    private int totalKillCount = 0;
 
     public enum LevelState
     {
@@ -79,17 +83,19 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         processWaveTime = 0f; // 确保初始值为0
-        
+
         // 计算总波次时间
-        normalWaveConfigs.ForEach(config => {
-            totalWaveTime += config.waveInterval * config.waveGroups.Count;
+        normalWaveConfigs.ForEach(config =>
+        {
+            totalWaveTime += config.waveInterval * (config.waveGroups.Count - 1);
             foreach (var group in config.waveGroups)
             {
                 totalWaveTime += group.spawnInterval * (group.enemies.Count - 1);
             }
         });
-        
-        specialWaveConfigs.ForEach(config => {
+
+        specialWaveConfigs.ForEach(config =>
+        {
             totalWaveTime += config.waveGroup.spawnInterval * (config.waveGroup.enemies.Count - 1);
         });
 
@@ -231,12 +237,8 @@ public class LevelManager : MonoBehaviour
         if (currentNormalWaveConfig.killCountToNextWave > 0)
         {
             int totalKillsNeeded = currentNormalWaveConfig.killCountToNextWave;
-            if (isWaitingForNextWave)
-            {
-                totalKillsNeeded += GetRemainingEnemiesFromLastWave();
-            }
 
-            if (GetTotalKills() >= totalKillsNeeded)
+            if (totalKillCount >= totalKillsNeeded)
             {
                 isWaitingForNextWave = false;
                 lastWaveTime = Time.time;
@@ -255,20 +257,6 @@ public class LevelManager : MonoBehaviour
         {
             StartCoroutine(SpawnNextWave());
         }
-    }
-
-    private int GetRemainingEnemiesFromLastWave()
-    {
-        // 计算上一波剩余的敌人数量
-        // 可能需要记录每波生成的敌人
-        return 0;
-    }
-
-    private int GetTotalKills()
-    {
-        // 从统计中获取总击杀数
-        // return GameStats.TotalKills;
-        return 0;
     }
 
     private IEnumerator SpawnNextWave()
@@ -296,8 +284,6 @@ public class LevelManager : MonoBehaviour
 
         foreach (var enemyPrefab in waveGroup.enemies)
         {
-            
-
             SpawnEnemy(enemyPrefab);
             yield return new WaitForSeconds(waveGroup.spawnInterval);
         }
@@ -316,6 +302,7 @@ public class LevelManager : MonoBehaviour
             var length = RandomSkyPoints.Count;
             enemy.spawnPosition = RandomSkyPoints[UnityEngine.Random.Range(0, length)];
         }
+
         enemy.Respawn();
         activeEnemies.Add(enemyPrefab);
     }
@@ -326,6 +313,8 @@ public class LevelManager : MonoBehaviour
         {
             activeEnemies.Remove(enemy);
         }
+
+        totalKillCount++;
 
         // 检查是否满足胜利条件
         if (isFinalBattle && activeEnemies.Count == 0)
