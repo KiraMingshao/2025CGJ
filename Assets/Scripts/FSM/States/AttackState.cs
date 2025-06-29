@@ -91,7 +91,7 @@ namespace AI.FSM
                         enemy.imbalance += characterFSM.character.GetDecoratedStatus().attack - enemy.resilience;
                         enemy.hasBeenAttacked = true;
                     }
-                    else if (collider.CompareTag("EnemyBullet"))
+                    else if (collider.CompareTag("EnemyBullet") && InputQueue.Instance.LastPressedKey == "ChopUp")
                     {
                         Debug.Log("Enemy bullet resisted");
                         BulletController bulletController = collider.GetComponent<BulletController>();

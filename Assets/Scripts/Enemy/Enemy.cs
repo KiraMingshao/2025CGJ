@@ -1,4 +1,6 @@
+using BehaviorDesigner.Runtime;
 using DG.Tweening;
+using System.Collections;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,6 +15,7 @@ namespace Enemy {
         public GameObject wave;
         public Vector3 spawnPosition;
         public Slider hpSlider;
+        public float secondsBeforeDestroy = 5f;
 
         [Header("Properties")]
         public int health;
@@ -71,10 +74,18 @@ namespace Enemy {
             hpSlider.value = health;
         }
 
+        private IEnumerator Dead() {
+            this.bodyCollider.enabled = false;
+            this.GetComponent<Rigidbody2D>().gravityScale = 1;
+            this.GetComponent<BehaviorDesigner.Runtime.BehaviorTree>().enabled = false;
+            yield return new WaitForSeconds(this.secondsBeforeDestroy);
+            Destroy(this.gameObject);
+        }
+
         private void Update() {
             if (this.health <= 0 || this.imbalance >= this.maxImbalance) {
                 LevelManager.Instance.OnEnemyDeath(this.gameObject);
-                Destroy(this.gameObject);
+                StartCoroutine(this.Dead());
             }
 
             DOTween.To(() => hpSlider.value, x => hpSlider.value = x, health, 0.3f);
