@@ -149,6 +149,8 @@ public class BattleUI : MonoBehaviour
         energyItems.AddRange(items);
     }
 
+
+
     // Update is called once per frame
     void Update()
     {
@@ -178,5 +180,7 @@ public class BattleUI : MonoBehaviour
             // Ω´bg2÷ÿ÷√µΩbg1”“≤‡
             bg2.position = startPos.position;
         }
+
+
     }
 }

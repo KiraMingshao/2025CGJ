@@ -9,6 +9,8 @@
                 CharacterBattleActionFSM battleActionFSM = lifeFSM.GetComponent<CharacterBattleActionFSM>();
                 battleActionFSM.bodyCollider.enabled = false;
                 battleActionFSM.crouchCollider.enabled = false;
+
+                LevelManager.Instance.PlayerDefeated();
             }
         }
     }
