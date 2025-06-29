@@ -22,11 +22,7 @@ namespace Character {
         private void Update() {
             if (Time.frameCount % 50 == 0)
                 this.AddImbalance(this.GetImbalanceGain());
-            this.ImbalanceCombact();
-            if (GetDecoratedStatus().health<=0)
-            {
-                LevelManager.Instance.PlayerDefeated();
-            }
+            this.ImbalanceCombact();       
         }
 
         private void ImbalanceCombact() {
