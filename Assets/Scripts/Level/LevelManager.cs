@@ -346,7 +346,7 @@ public class LevelManager : MonoBehaviour
         isLevelFinished = true;
         Debug.Log("Level Defeat!");
         // 触发失败逻辑
-        BattleUI.Instance.ShowGameOver(true);
+        BattleUI.Instance.ShowGameOver(false);
     }
 
     public LevelState GetCurrentLevelState()
