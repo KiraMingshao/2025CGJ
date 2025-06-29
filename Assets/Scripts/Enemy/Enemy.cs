@@ -77,6 +77,7 @@ namespace Enemy {
 
         private void Update() {
             if (this.health <= 0 || this.imbalance >= this.maxImbalance) {
+                LevelManager.Instance.OnEnemyDeath(this.gameObject);
                 Destroy(this.gameObject);
             }
 
