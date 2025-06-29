@@ -22,6 +22,10 @@ namespace Character {
         private void Update() {
             this.AddImbalance(this.GetImbalanceGain());
             this.ImbalanceCombact();
+            if (GetDecoratedStatus().health<=0)
+            {
+                LevelManager.Instance.PlayerDefeated();
+            }
         }
 
         private void ImbalanceCombact() {
