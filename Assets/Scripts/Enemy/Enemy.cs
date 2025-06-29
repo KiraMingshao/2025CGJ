@@ -17,6 +17,7 @@ namespace Enemy {
         public int resilience;
         public int imbalance;
         public int maxImbalance;
+        public bool isAir;
         [HideInInspector]
         public int additionalAttack;
 
