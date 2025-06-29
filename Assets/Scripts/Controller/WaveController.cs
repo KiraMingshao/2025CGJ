@@ -22,7 +22,7 @@ public class WaveController : MonoBehaviour {
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.CompareTag("Wave")) {
+        if (collision.CompareTag("PlayerWave") || collision.CompareTag("EnemyWave")) {
             WaveController anotherWave = collision.GetComponent<WaveController>();
             if (this.rigidbody.velocity.x * collision.gameObject.GetComponent<Rigidbody2D>().velocity.x > 0) {
                 this.strength += anotherWave.strength;
