@@ -11,6 +11,7 @@ namespace AI.FSM {
         public Collider2D sweepCollider;
         public Collider2D chopUpCollider;
         public Collider2D chopDownCollider;
+        public Collider2D crouchCollider;
 
         [Header("Wave")]
         public GameObject wave;
@@ -28,6 +29,7 @@ namespace AI.FSM {
             this.chopUpCollider.enabled = false;
             this.chopDownCollider.enabled = false;
             this.rb = this.GetComponent<Rigidbody2D>();
+            this.crouchCollider.enabled = false;
         }
 
         protected override void SetUpFSM() {
