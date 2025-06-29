@@ -1,4 +1,5 @@
 ﻿using DG.Tweening;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace AI.FSM {
@@ -10,6 +11,19 @@ namespace AI.FSM {
         public override void OnStateEnter(FSMBase fsm) {
             if (fsm is CharacterBattleActionFSM battleActionFSM) {
                 PlayUnderAttackAnim(battleActionFSM);
+
+                List<Collider2D> colliders = new List<Collider2D>();
+                battleActionFSM.bodyCollider.OverlapCollider(new ContactFilter2D() {
+                    layerMask = LayerMask.GetMask("EnemyAttack"),
+                }, colliders);
+                foreach (var collider in colliders) {
+                    if (collider.CompareTag("Enemy")) {
+                        Enemy.Enemy enemy = collider.GetComponent<Enemy.Enemy>();
+                        var attack = enemy.attack + enemy.additionalAttack;
+                        battleActionFSM.character.status.health -= attack;
+                        battleActionFSM.character.AddImbalance(Mathf.Max(attack - battleActionFSM.character.GetDecoratedStatus().resilience));
+                    }
+                }
             }
         }
 

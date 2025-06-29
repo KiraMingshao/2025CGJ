@@ -53,6 +53,7 @@ namespace AI.FSM {
                     if (collider.CompareTag("Enemy")) {
                         Enemy.Enemy enemy = collider.GetComponent<Enemy.Enemy>();
                         enemy.health -= characterFSM.character.GetDecoratedStatus().attack;
+                        enemy.imbalance += characterFSM.character.GetDecoratedStatus().attack - enemy.resilience;
                     } else {
                         BulletController bulletController = collider.GetComponent<BulletController>();
                         bulletController.attack += characterFSM.character.GetDecoratedStatus().attack;
