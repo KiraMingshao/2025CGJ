@@ -155,7 +155,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 29
   m_Sprite: {fileID: 21300000, guid: cd8dd7b1988175842a6d9928a82b9292, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
@@ -205,8 +205,8 @@ MonoBehaviour:
         byteData: 
         byteDataArray: 
       Version: 1.7.5
-  gizmoViewMode: 0
-  showBehaviorDesignerGizmo: 0
+  gizmoViewMode: 2
+  showBehaviorDesignerGizmo: 1
 --- !u!61 &8917406104023605156
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -271,6 +271,7 @@ MonoBehaviour:
   wave: {fileID: 7670314289175885406, guid: 37d240c9ed794154ba507f2e165c871d, type: 3}
   spawnPosition: {x: 14, y: -2.3, z: 0}
   hpSlider: {fileID: 0}
+  secondsBeforeDestroy: 5
   health: 50
   attack: 6
   resilience: 3
@@ -278,6 +279,7 @@ MonoBehaviour:
   maxImbalance: 30
   isAir: 0
   additionalAttack: 0
+  hasBeenAttacked: 0
   attackTrigger: Attack
   chargeTrigger: Charge
   respawnTrigger: Respawn
