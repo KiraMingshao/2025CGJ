@@ -36,7 +36,7 @@ namespace Enemy.BehaviorTree {
 
 
         public override void OnStart() {
-            Debug.Log("Start timer");
+            //Debug.Log("Start timer");
             beginTime = Time.time;
             StartCoroutine(interruptChild());
         }
@@ -47,7 +47,7 @@ namespace Enemy.BehaviorTree {
         }
 
         public override void OnEnd() {
-            Debug.Log("Reset timer " + beginTime + ' ' + time + ' ' + Time.time);
+            //Debug.Log("Reset timer " + beginTime + ' ' + time + ' ' + Time.time);
             beginTime = -1;
         }
     }

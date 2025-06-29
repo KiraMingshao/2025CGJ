@@ -30,7 +30,7 @@ public class InputQueue : MonoBehaviour {
         if (Input.anyKeyDown) {
             foreach (string key in keys) {
                 if (Input.GetButtonDown(key)) {
-                    Debug.Log("Pressed " + key);
+                    //Debug.Log("Pressed " + key);
                     queue.Add(new InputKey(key));
                 }
             }

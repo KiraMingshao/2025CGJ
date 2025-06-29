@@ -15,6 +15,7 @@ namespace AI.FSM {
                 List<Collider2D> colliders = new List<Collider2D>();
                 battleActionFSM.bodyCollider.OverlapCollider(new ContactFilter2D() {
                     layerMask = LayerMask.GetMask("EnemyAttack"),
+                    useTriggers = true,
                 }, colliders);
                 foreach (var collider in colliders) {
                     if (collider.CompareTag("Enemy")) {

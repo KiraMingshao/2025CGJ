@@ -33,7 +33,7 @@ namespace AI.FSM
 
         public override void OnStateEnter(FSMBase fsm)
         {
-            Debug.Log("Enter attack state");
+            //Debug.Log("Enter attack state");
             if (fsm is CharacterBattleActionFSM characterFSM)
             {
                 this.attackCollider = this.getAttackCollider(characterFSM);
@@ -54,6 +54,11 @@ namespace AI.FSM
                         characterFSM.waveVelocityFactor / strength * Vector2.right;
                     wave.GetComponent<WaveController>().Rescale(strength);
                 }
+
+                foreach (var enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+                {
+                    enemy.GetComponent<Enemy.Enemy>().hasBeenAttacked = false;
+                }
             }
         }
 
@@ -67,18 +72,28 @@ namespace AI.FSM
             {
                 List<Collider2D> result = new List<Collider2D>();
                 this.attackCollider.OverlapCollider(
-                    new ContactFilter2D() { layerMask = LayerMask.GetMask("Enemy") | LayerMask.GetMask("EnemyBullet") },
-                    result);
+                    new ContactFilter2D() {
+                        layerMask = LayerMask.GetMask("Enemy", "EnemyBullet"),
+                        useTriggers = true,
+                    },
+                    result
+                );
                 foreach (var collider in result)
                 {
                     if (collider.CompareTag("Enemy"))
                     {
                         Enemy.Enemy enemy = collider.GetComponent<Enemy.Enemy>();
+                        if (enemy.hasBeenAttacked) {
+                            continue;
+                        }
+                        Debug.Log("Enemy attacked");
                         enemy.health -= characterFSM.character.GetDecoratedStatus().attack;
                         enemy.imbalance += characterFSM.character.GetDecoratedStatus().attack - enemy.resilience;
+                        enemy.hasBeenAttacked = true;
                     }
                     else if (collider.CompareTag("EnemyBullet"))
                     {
+                        Debug.Log("Enemy bullet resisted");
                         BulletController bulletController = collider.GetComponent<BulletController>();
                         bulletController.attack += characterFSM.character.GetDecoratedStatus().attack;
                         Rigidbody2D rigidbody = collider.GetComponent<Rigidbody2D>();

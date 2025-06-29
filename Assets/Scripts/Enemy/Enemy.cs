@@ -23,6 +23,8 @@ namespace Enemy {
         public bool isAir;
         [HideInInspector]
         public int additionalAttack;
+        [HideInInspector]
+        public bool hasBeenAttacked = false;
 
         [Header("Animator Triggers")]
         public string attackTrigger;

@@ -16,7 +16,6 @@ namespace Enemy.BehaviorTree {
         }
 
         public override void OnEnd() {
-            Debug.Log("reset velocity");
             this.rb.velocity = Vector2.zero;
         }
     }
