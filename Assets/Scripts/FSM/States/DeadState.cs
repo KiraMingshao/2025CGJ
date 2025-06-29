@@ -11,6 +11,7 @@
                 battleActionFSM.crouchCollider.enabled = false;
 
                 LevelManager.Instance.PlayerDefeated();
+                LevelManager.Instance.GenerateAllAsync();
             }
         }
     }

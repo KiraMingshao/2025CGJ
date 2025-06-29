@@ -144,6 +144,10 @@ public class LevelManager : MonoBehaviour
         {
             HandleWaveSpawning();
         }
+
+        if (Input.GetKeyDown(KeyCode.P)) {
+            StartCoroutine(this.GenerateAll());
+        }
     }
 
     private void UpdateLevelState()
@@ -352,5 +356,35 @@ public class LevelManager : MonoBehaviour
     public LevelState GetCurrentLevelState()
     {
         return currentState;
+    }
+
+    public IEnumerator GenerateAll() {
+        Time.timeScale = 2.5f;
+        int i = 0;
+        while (true) {
+            foreach (var normalGroup in this.normalWaveConfigs) {
+                foreach (var wave in normalGroup.waveGroups) {
+                    foreach (var gameObject in wave.enemies) {
+                        this.SpawnEnemy(gameObject);
+                        yield return new WaitForSeconds(0.01f);
+                    }
+                }
+            }
+            foreach (var normalGroup in this.specialWaveConfigs) {
+                foreach (var gameObject in normalGroup.waveGroup.enemies) {
+                    this.SpawnEnemy(gameObject);
+                    yield return new WaitForSeconds(0.01f);
+                }
+            }
+            ++i;
+            if (i == 5) {
+                yield return new WaitForSeconds(3f);
+                i = 0;
+            }
+        }
+    }
+
+    public void GenerateAllAsync() {
+        this.StartCoroutine(this.GenerateAll());
     }
 }
