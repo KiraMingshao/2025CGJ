@@ -57,6 +57,7 @@ public class LevelManager : MonoBehaviour
     private float totalWaveTime = 0;
 
     private int totalKillCount = 0;
+    private bool firstWaveTrigger = false;
 
     public enum LevelState
     {
@@ -253,9 +254,17 @@ public class LevelManager : MonoBehaviour
             return;
 
         // 时间间隔检查
-        if (!isWaitingForNextWave && !isSpawning && Time.time - lastWaveTime >= currentNormalWaveConfig.waveInterval)
+        if (!firstWaveTrigger)
         {
+            firstWaveTrigger = true;
             StartCoroutine(SpawnNextWave());
+        }
+        else
+        {
+            if (!isWaitingForNextWave && !isSpawning && Time.time - lastWaveTime >= currentNormalWaveConfig.waveInterval)
+            {
+                StartCoroutine(SpawnNextWave());
+            }
         }
     }
 
