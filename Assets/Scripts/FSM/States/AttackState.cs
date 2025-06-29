@@ -46,6 +46,10 @@ namespace AI.FSM {
             }
         }
 
+        private void playAnim(CharacterBattleActionFSM fsm) {
+            fsm.animator.SetTrigger("AttackKeyPressed" + InputQueue.Instance.LastPressedKey);
+        }
+
         public override void OnStateFixedStay(FSMBase fsm) {
             if (fsm is CharacterBattleActionFSM characterFSM) {
                 List<Collider2D> result = new List<Collider2D>();
