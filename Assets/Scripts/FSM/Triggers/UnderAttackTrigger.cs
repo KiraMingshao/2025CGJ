@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 namespace AI.FSM {
     public class UnderAttackTrigger : FSMTrigger {
@@ -7,7 +8,7 @@ namespace AI.FSM {
             if (fsm is CharacterBattleActionFSM battleActionFSM) {
                 List<Collider2D> result = new List<Collider2D>();
                 ContactFilter2D filter = new ContactFilter2D() {
-                    layerMask = LayerMask.GetMask("EnemyAttack", "EnemyBullet", "EnemyWave"),
+                    layerMask = LayerMask.GetMask("Enemy", "EnemyBullet", "EnemyWave"),
                     useTriggers = true,
                 };
                 if (battleActionFSM.bodyCollider.enabled) {
@@ -15,7 +16,12 @@ namespace AI.FSM {
                 } else {
                     battleActionFSM.crouchCollider.OverlapCollider(filter, result);
                 }
-                return result.Count > 0;
+                int cnt = 0;
+                foreach (var collider in result) {
+                    if (collider.CompareTag("Enemy") || collider.CompareTag("EnemyBullet") || collider.CompareTag("EnemyWave"))
+                        ++cnt;
+                }
+                return cnt > 0;
             }
             throw new NotSupportedFSMTypeException(this.TriggerID, fsm);
         }

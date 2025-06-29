@@ -62,6 +62,10 @@ namespace AI.FSM {
             crouchState.AddMap(FSMTriggerID.CrouchKeyReleased, FSMStateID.Idle);
             crouchState.AddMap(FSMTriggerID.AttackKeyPressed, FSMStateID.Attack);
             this._states.Add(crouchState);
+
+            UnderAttackState underAttackState = new UnderAttackState();
+            underAttackState.AddMap(FSMTriggerID.AnimateFinished, FSMStateID.Idle);
+            this._states.Add(underAttackState);
         }
     }
 }
