@@ -184,8 +184,8 @@ MonoBehaviour:
         byteData: 
         byteDataArray: 
       Version: 1.7.5
-  gizmoViewMode: 0
-  showBehaviorDesignerGizmo: 0
+  gizmoViewMode: 2
+  showBehaviorDesignerGizmo: 1
 --- !u!50 &4484905688595441141
 Rigidbody2D:
   serializedVersion: 4
@@ -257,7 +257,7 @@ MonoBehaviour:
   resilience: 1
   imbalance: 0
   maxImbalance: 20
-  isAir: 0
+  isAir: 1
   additionalAttack: 0
   attackTrigger: Attack
   chargeTrigger: Charge
