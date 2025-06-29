@@ -233,6 +233,18 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2211563676855062573, guid: c03f057c34a482f4c903eb478c763a76, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2211563676855062573, guid: c03f057c34a482f4c903eb478c763a76, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2211563676855062573, guid: c03f057c34a482f4c903eb478c763a76, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2447605576186667431, guid: c03f057c34a482f4c903eb478c763a76, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1016,15 +1028,36 @@ MonoBehaviour:
     endProgress: 1
     waveGroups:
     - enemies:
-      - {fileID: 3260893188352361170, guid: 4d887c8a1fd73e74182129b71f269bff, type: 3}
-      - {fileID: 3260893188352361170, guid: 4d887c8a1fd73e74182129b71f269bff, type: 3}
+      - {fileID: 3260893188352361170, guid: adf737b37ec82ae4faefe83e7a4cd6de, type: 3}
+      - {fileID: 3260893188352361170, guid: adf737b37ec82ae4faefe83e7a4cd6de, type: 3}
       - {fileID: 3260893188352361170, guid: ccd5c0811cec31a4691a74f9e31e02b0, type: 3}
-      spawnInterval: 1
+      spawnInterval: 2
     randomSelection: 0
     waveInterval: 15
     killCountToNextWave: 0
   - startProgress: 2
-    endProgress: 30
+    endProgress: 40
+    waveGroups:
+    - enemies:
+      - {fileID: 3260893188352361170, guid: 4d887c8a1fd73e74182129b71f269bff, type: 3}
+      - {fileID: 3260893188352361170, guid: adf737b37ec82ae4faefe83e7a4cd6de, type: 3}
+      - {fileID: 3260893188352361170, guid: ccd5c0811cec31a4691a74f9e31e02b0, type: 3}
+      spawnInterval: 2
+    - enemies:
+      - {fileID: 3260893188352361170, guid: 4d887c8a1fd73e74182129b71f269bff, type: 3}
+      - {fileID: 3260893188352361170, guid: ccd5c0811cec31a4691a74f9e31e02b0, type: 3}
+      - {fileID: 3260893188352361170, guid: ccd5c0811cec31a4691a74f9e31e02b0, type: 3}
+      spawnInterval: 2
+    - enemies:
+      - {fileID: 3260893188352361170, guid: ccd5c0811cec31a4691a74f9e31e02b0, type: 3}
+      - {fileID: 3260893188352361170, guid: 4d887c8a1fd73e74182129b71f269bff, type: 3}
+      - {fileID: 3260893188352361170, guid: 4d887c8a1fd73e74182129b71f269bff, type: 3}
+      spawnInterval: 2
+    randomSelection: 0
+    waveInterval: 15
+    killCountToNextWave: 0
+  - startProgress: 40
+    endProgress: 100
     waveGroups:
     - enemies:
       - {fileID: 3260893188352361170, guid: 4d887c8a1fd73e74182129b71f269bff, type: 3}

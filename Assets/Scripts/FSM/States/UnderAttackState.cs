@@ -30,7 +30,7 @@ namespace AI.FSM {
 
         private void PlayUnderAttackAnim(CharacterBattleActionFSM battleActionFSM)
         {
-            battleActionFSM.transform.DOPunchPosition(new UnityEngine.Vector3(-10, 0, 0), 0.5f, 5);
+            battleActionFSM.transform.DOPunchPosition(new UnityEngine.Vector3(-0.5f, 0, 0), 0.5f, 5);
             var sprite = battleActionFSM.GetComponent<SpriteRenderer>();
             Sequence seq = DOTween.Sequence();
             //添加动画到序列中
