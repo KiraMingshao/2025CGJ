@@ -21,6 +21,7 @@ namespace AI.FSM {
         public void loadDefaultState() {
             // 加载默认状态
             _currentState = _defaultState = _states.Find(s => s.StateID == defaultStateID);
+            CurrentStateName = _currentState.StateID.ToString();
             _currentState.OnStateEnter(this);
         }
         private void Awake() {
@@ -44,6 +45,7 @@ namespace AI.FSM {
         public void ChangeActiveState(FSMStateID targetStateID) {
             _currentState.OnStateExit(this);
             _currentState = targetStateID == FSMStateID.Default ? _defaultState : _states.Find(s => s.StateID == targetStateID);
+            CurrentStateName = _currentState.StateID.ToString();
             _currentState.OnStateEnter(this);
         }
         public void SetTrigger(FSMTriggerID triggerID) {
@@ -66,6 +68,8 @@ namespace AI.FSM {
                 return _currentState.StateID;
             }
         }
+        [ReadOnly]
+        public string CurrentStateName;
         public Animator animator;
     }
 }
