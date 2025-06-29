@@ -154,7 +154,7 @@ MonoBehaviour:
   logTaskChanges: 0
   group: 1
   resetValuesOnRestart: 0
-  externalBehavior: {fileID: 11400000, guid: dacbf81fb4c360e4bad4d816443d6992, type: 2}
+  externalBehavior: {fileID: 11400000, guid: 6188d9fef4f5f4548b582b7de9a4e7d7, type: 2}
   mBehaviorSource:
     behaviorName: EnemyHorse
     behaviorDescription: 
@@ -211,12 +211,13 @@ MonoBehaviour:
   animator: {fileID: -5803127439036754356}
   bullet: {fileID: 0}
   wave: {fileID: 7670314289175885406, guid: 37d240c9ed794154ba507f2e165c871d, type: 3}
-  spawnPosition: {x: 0, y: 0, z: 0}
+  spawnPosition: {x: 13, y: -2.5, z: 0}
   health: 10
   attack: 3
   resilience: 1
   imbalance: 0
   maxImbalance: 20
+  isAir: 0
   additionalAttack: 0
   attackTrigger: Attack
   chargeTrigger: Charge

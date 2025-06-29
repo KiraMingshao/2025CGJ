@@ -185,7 +185,7 @@ MonoBehaviour:
   logTaskChanges: 0
   group: 0
   resetValuesOnRestart: 0
-  externalBehavior: {fileID: 11400000, guid: 2153ef7b98e4dba4cace01df0d0b122e, type: 2}
+  externalBehavior: {fileID: 11400000, guid: dacbf81fb4c360e4bad4d816443d6992, type: 2}
   mBehaviorSource:
     behaviorName: Behavior
     behaviorDescription: 
@@ -268,12 +268,13 @@ MonoBehaviour:
   animator: {fileID: -2144718374023439127}
   bullet: {fileID: 8880025452507042074, guid: 0b3271f81a6c0ab4ab83a77809734982, type: 3}
   wave: {fileID: 7670314289175885406, guid: 37d240c9ed794154ba507f2e165c871d, type: 3}
-  spawnPosition: {x: 0, y: 0, z: 0}
+  spawnPosition: {x: 14, y: -2.3, z: 0}
   health: 50
   attack: 6
   resilience: 3
   imbalance: 0
   maxImbalance: 30
+  isAir: 0
   additionalAttack: 0
   attackTrigger: Attack
   chargeTrigger: Charge

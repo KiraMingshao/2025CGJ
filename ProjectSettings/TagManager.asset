@@ -8,6 +8,9 @@ TagManager:
   - Ground
   - PlayerBullet
   - EnemyBullet
+  - Wave
+  - EnemyWave
+  - PlayerWave
   layers:
   - Default
   - TransparentFX

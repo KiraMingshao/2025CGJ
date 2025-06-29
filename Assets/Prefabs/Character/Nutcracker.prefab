@@ -226,11 +226,30 @@ MonoBehaviour:
     attackSpeedIncrease: 1.5
   imbalanceGainCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.001455865
+      outSlope: 0.001455865
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.525
+    - serializedVersion: 3
+      time: 50
+      value: 3
+      inSlope: 0.11041001
+      outSlope: 0.11041001
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.05833336
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   attackImbalanceIncrease: 3
+  combactForce: 0
 --- !u!114 &-1883979909244085222
 MonoBehaviour:
   m_ObjectHideFlags: 0
