@@ -205,8 +205,8 @@ MonoBehaviour:
         byteData: 
         byteDataArray: 
       Version: 1.7.5
-  gizmoViewMode: 0
-  showBehaviorDesignerGizmo: 0
+  gizmoViewMode: 2
+  showBehaviorDesignerGizmo: 1
 --- !u!61 &8917406104023605156
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -272,11 +272,11 @@ MonoBehaviour:
   spawnPosition: {x: 14, y: -2.3, z: 0}
   hpSlider: {fileID: 872023374142045038}
   secondsBeforeDestroy: 5
-  health: 50
-  attack: 6
+  health: 25
+  attack: 4
   resilience: 3
   imbalance: 0
-  maxImbalance: 30
+  maxImbalance: 20
   isAir: 0
   additionalAttack: 0
   hasBeenAttacked: 0

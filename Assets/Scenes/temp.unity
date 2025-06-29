@@ -1086,7 +1086,7 @@ MonoBehaviour:
     waveInterval: 15
     killCountToNextWave: 0
   specialWaveConfigs:
-  - triggerProgress: 1
+  - triggerProgress: 95
     waveGroup:
       enemies:
       - {fileID: 3260893188352361170, guid: bf8ff7151cb821047a8850e8fc677682, type: 3}
