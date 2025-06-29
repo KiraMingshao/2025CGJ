@@ -1,4 +1,6 @@
 ﻿using DG.Tweening;
+using UnityEngine;
+
 namespace AI.FSM
 {
     public class IdleState : FSMState
@@ -37,23 +39,31 @@ namespace AI.FSM
               {
                   Sequence seq = DOTween.Sequence();
                   //添加动画到序列中
-                  seq.Append(characterFSM.transform.DORotate(new UnityEngine.Vector3(0, 0, -30), (float)(30 - characterFSM.transform.eulerAngles.z) * 0.2f));
-                  seq.Append(characterFSM.transform.DORotate(new UnityEngine.Vector3(0, 0, 30), (float)(30 - characterFSM.transform.eulerAngles.z) * 0.2f));
+                  seq.Append(characterFSM.transform.DORotate(new UnityEngine.Vector3(0, 0, -10), (float)(10 - characterFSM.transform.eulerAngles.z) * 0.2f));
+                  seq.Append(characterFSM.transform.DORotate(new UnityEngine.Vector3(0, 0,10), (float)(10 - characterFSM.transform.eulerAngles.z) * 0.2f));
 
                   seq.SetLoops(-1);
               }
 
             );           */
 
-     
 
+            characterFSM.transform.DORotate(new Vector3(-15, 0, -10), 0.25f)
+        .SetEase(Ease.OutSine)
+        .OnComplete(() => {
+            characterFSM.transform.DORotate(new Vector3(15, 0, 10), 0.5f)
+                .SetEase(Ease.InOutSine)
+                .SetLoops(-1, LoopType.Yoyo);
+        });
+
+            /*
             Sequence seq = DOTween.Sequence();
             //添加动画到序列中
-            seq.Append(characterFSM.transform.DORotate(new UnityEngine.Vector3(-15, 0, -10), 0.25f));
-            seq.Append(characterFSM.transform.DORotate(new UnityEngine.Vector3(15, 0, 10), 0.5f));
-            seq.Append(characterFSM.transform.DORotate(new UnityEngine.Vector3(0, 0, 0), 0.25f));
+            seq.Append(characterFSM.transform.DORotate(new UnityEngine.Vector3(-15, 0, -10), (float)(10 - characterFSM.transform.eulerAngles.z) * 0.1f));
+            seq.Append(characterFSM.transform.DORotate(new UnityEngine.Vector3(15, 0, 10), (float)(10 - characterFSM.transform.eulerAngles.z) * 0.1f));
+            seq.Append(characterFSM.transform.DORotate(new UnityEngine.Vector3(0, 0, 0), (float)(Mathf.Abs( characterFSM.transform.eulerAngles.z)) * 0.1f));
 
-            seq.SetLoops(-1);
+            seq.SetLoops(-1);*/
         }
 
     }

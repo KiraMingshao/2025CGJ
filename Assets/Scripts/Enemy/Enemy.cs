@@ -1,5 +1,7 @@
+using DG.Tweening;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Enemy {
     public class Enemy : MonoBehaviour {
@@ -10,6 +12,7 @@ namespace Enemy {
         public GameObject bullet;
         public GameObject wave;
         public Vector3 spawnPosition;
+        public Slider hpSlider;
 
         [Header("Properties")]
         public int health;
@@ -32,6 +35,7 @@ namespace Enemy {
 
         public void Awake() {
             this.rb = this.GetComponent<Rigidbody2D>();
+            hpSlider.maxValue = health;
         }
 
         public void Attack(int additionalAttack) {
@@ -65,13 +69,16 @@ namespace Enemy {
         public void Respawn() {
             //this.animator?.SetTrigger(respawnTrigger);
             this.transform.position = spawnPosition;
-            this.rb.velocity = Vector2.zero;
+            this.rb.velocity = Vector2.zero;           
+            hpSlider.value = health;
         }
 
         private void Update() {
             if (this.health <= 0 || this.imbalance >= this.maxImbalance) {
                 Destroy(this.gameObject);
             }
+
+            DOTween.To(() => hpSlider.value, x => hpSlider.value = x, health, 0.5f);
         }
     }
 }
