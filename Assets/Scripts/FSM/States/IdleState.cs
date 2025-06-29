@@ -49,8 +49,9 @@ namespace AI.FSM
 
             Sequence seq = DOTween.Sequence();
             //添加动画到序列中
-            seq.Append(characterFSM.transform.DORotate(new UnityEngine.Vector3(-15, 0, -10), 0.5f));
+            seq.Append(characterFSM.transform.DORotate(new UnityEngine.Vector3(-15, 0, -10), 0.25f));
             seq.Append(characterFSM.transform.DORotate(new UnityEngine.Vector3(15, 0, 10), 0.5f));
+            seq.Append(characterFSM.transform.DORotate(new UnityEngine.Vector3(0, 0, 0), 0.25f));
 
             seq.SetLoops(-1);
         }
