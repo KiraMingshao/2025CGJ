@@ -46,9 +46,10 @@ public class WaveController : MonoBehaviour {
                 anotherWave.strength = 0;
             } else {
                 int temp = this.strength;
-                this.strength -= anotherWave.strength;
+                this.strength -= Mathf.Max(anotherWave.strength, 0);
+                //Debug.Log(anotherWave.strength);
                 this.Rescale(this.strength);
-                anotherWave.strength -= temp;
+                anotherWave.strength -= Mathf.Max(temp, 0);
                 anotherWave.Rescale(anotherWave.strength);
             }
         } else if (collision.CompareTag("Enemy") && this.CompareTag("PlayerWave")) {
