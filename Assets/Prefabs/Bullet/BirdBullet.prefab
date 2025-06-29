@@ -135,5 +135,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attack: 0
-  initSpeed: 20
-  maxAliveTime: 100
+  initSpeed: 25
+  maxAliveTime: 10

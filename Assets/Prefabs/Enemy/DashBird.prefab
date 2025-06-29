@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 7089101223250490977}
   - component: {fileID: 4584765572193431992}
   m_Layer: 7
-  m_Name: Bird
+  m_Name: DashBird
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -165,7 +165,7 @@ MonoBehaviour:
   logTaskChanges: 0
   group: 0
   resetValuesOnRestart: 0
-  externalBehavior: {fileID: 11400000, guid: 2153ef7b98e4dba4cace01df0d0b122e, type: 2}
+  externalBehavior: {fileID: 11400000, guid: aab5b010a9b77e3439e588efd6dfc7b9, type: 2}
   mBehaviorSource:
     behaviorName: Behavior
     behaviorDescription: 
