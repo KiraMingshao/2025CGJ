@@ -361,7 +361,7 @@ public class LevelManager : MonoBehaviour
     public IEnumerator GenerateAll() {
         Time.timeScale = 2.5f;
         int i = 0;
-        for(int k = 1; k <= 100; ++k)
+        for(int k = 1; k <= 20; ++k)
         {
             foreach (var normalGroup in this.normalWaveConfigs) {
                 foreach (var wave in normalGroup.waveGroups) {
