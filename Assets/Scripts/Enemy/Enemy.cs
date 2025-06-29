@@ -39,22 +39,17 @@ namespace Enemy {
             this.additionalAttack = additionalAttack;
         }
 
-        public async void Attack(int additionalAttack, float chargeTime) {
-            this.animator.SetFloat(chargeTrigger, chargeTime);
-            await Task.Delay((int)(chargeTime * 1000));
-            this.Attack(additionalAttack);
-        }
-
-        public void Shoot() {
+        public void Shoot(int additionalAttack) {
+            this.additionalAttack = additionalAttack;
             var newBullet = Instantiate(bullet, this.transform.position, Quaternion.identity);
             newBullet.tag = "EnemyBullet";
-            newBullet.GetComponent<BulletController>().attack = this.attack;
+            newBullet.GetComponent<BulletController>().attack = this.attack + additionalAttack;
         }
 
-        public void CreateWave() {
+        public void CreateWave(int additionalAttack) {
             var newWave = Instantiate(wave, this.transform.position, Quaternion.identity);
             newWave.tag = "EnemyWave";
-            int strength = Mathf.FloorToInt(attack * waveStrengthFactor * this.transform.localScale.y);
+            int strength = Mathf.FloorToInt((attack + additionalAttack) * waveStrengthFactor * this.transform.localScale.y);
             newWave.GetComponent<WaveController>().strength = strength;
             newWave.GetComponent<Rigidbody2D>().velocity = waveVelocityFactor / strength * Vector2.left;
             var oldy = newWave.transform.localScale.y;
