@@ -1013,7 +1013,7 @@ MonoBehaviour:
   currentProgress: 0
   normalWaveConfigs:
   - startProgress: 0
-    endProgress: 20
+    endProgress: 1
     waveGroups:
     - enemies:
       - {fileID: 3260893188352361170, guid: 4d887c8a1fd73e74182129b71f269bff, type: 3}
@@ -1023,8 +1023,8 @@ MonoBehaviour:
     randomSelection: 0
     waveInterval: 15
     killCountToNextWave: 0
-  - startProgress: 21
-    endProgress: 50
+  - startProgress: 2
+    endProgress: 30
     waveGroups:
     - enemies:
       - {fileID: 3260893188352361170, guid: 4d887c8a1fd73e74182129b71f269bff, type: 3}
@@ -1045,7 +1045,7 @@ MonoBehaviour:
     waveInterval: 15
     killCountToNextWave: 0
   specialWaveConfigs:
-  - triggerProgress: 51
+  - triggerProgress: 95
     waveGroup:
       enemies:
       - {fileID: 3260893188352361170, guid: bf8ff7151cb821047a8850e8fc677682, type: 3}

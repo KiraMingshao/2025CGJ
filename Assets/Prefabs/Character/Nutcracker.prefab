@@ -270,7 +270,7 @@ MonoBehaviour:
     health: 50
     increaseResilience: 3
     resilience: 2
-    maxImbalance: 50
+    maxImbalance: 100
     imbalance: 1
     attack: 5
     attackSpeed: 1
@@ -289,27 +289,27 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 2
-      inSlope: 0.031153463
-      outSlope: 0.031153463
+      value: 1
+      inSlope: 0.01245658
+      outSlope: 0.01245658
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.41488793
+      outWeight: 0.30416667
     - serializedVersion: 3
       time: 50
-      value: 8
-      inSlope: 0.31472102
-      outSlope: 0.31472102
+      value: 3
+      inSlope: 0.07834469
+      outSlope: 0.07834469
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.072931215
+      inWeight: 0.13059425
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   attackImbalanceIncrease: 3
-  combactForce: 0
+  combactForce: 1
 --- !u!114 &-1883979909244085222
 MonoBehaviour:
   m_ObjectHideFlags: 0

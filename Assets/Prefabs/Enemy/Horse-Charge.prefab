@@ -215,7 +215,7 @@ MonoBehaviour:
   spawnPosition: {x: 13, y: -2.5, z: 0}
   hpSlider: {fileID: 614251261729358577}
   secondsBeforeDestroy: 5
-  health: 10
+  health: 15
   attack: 3
   resilience: 1
   imbalance: 0
@@ -353,7 +353,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6797656096952467436}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -1, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4210808247674834787}
