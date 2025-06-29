@@ -78,7 +78,7 @@ namespace Enemy {
                 Destroy(this.gameObject);
             }
 
-            DOTween.To(() => hpSlider.value, x => hpSlider.value = x, health, 0.5f);
+            DOTween.To(() => hpSlider.value, x => hpSlider.value = x, health, 0.3f);
         }
     }
 }
