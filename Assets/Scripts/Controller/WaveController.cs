@@ -6,10 +6,15 @@ using UnityEngine;
 public class WaveController : MonoBehaviour {
     public int strength;
     public float maxAliveTime = 100f;
+    public float offsety;
     private new Rigidbody2D rigidbody;
 
     private void Awake() {
         this.rigidbody = GetComponent<Rigidbody2D>();
+    }
+
+    private void Start() {
+        this.transform.position += new Vector3(0, offsety, 0);
     }
 
     private void Update() {
@@ -25,11 +30,11 @@ public class WaveController : MonoBehaviour {
     public void Rescale(float newScale) {
         var oldy = this.transform.localScale.y;
         this.transform.localScale = new Vector3(this.transform.localScale.x, newScale, 1);
-        this.transform.position = new Vector3(
-            this.transform.position.x,
-            this.transform.position.y + (oldy - this.transform.localScale.y) / 2f,
-            this.transform.position.z
-        );
+        //this.transform.position = new Vector3(
+        //    this.transform.position.x,
+        //    this.transform.position.y,
+        //    this.transform.position.z
+        //);
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
