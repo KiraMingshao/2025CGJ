@@ -304,7 +304,7 @@ public class LevelManager : MonoBehaviour
         }
 
         enemy.Respawn();
-        activeEnemies.Add(enemyPrefab);
+        activeEnemies.Add(obj);
     }
 
     public void OnEnemyDeath(GameObject enemy)
