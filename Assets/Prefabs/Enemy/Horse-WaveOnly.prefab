@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -5803127439036754356}
   - component: {fileID: -8642985575413447537}
   m_Layer: 7
-  m_Name: Horse
+  m_Name: Horse-WaveOnly
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
