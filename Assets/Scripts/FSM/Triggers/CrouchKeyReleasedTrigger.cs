@@ -4,7 +4,7 @@ namespace AI.FSM {
     public class CrouchKeyReleasedTrigger : FSMTrigger {
         public override bool HandleTrigger(FSMBase fsm) {
             if (fsm is CharacterBattleActionFSM) {
-                return !Input.GetButton("Crouch");
+                return Input.GetButtonUp("Crouch");
             }
             throw new NotSupportedFSMTypeException(this.TriggerID, fsm);
         }
