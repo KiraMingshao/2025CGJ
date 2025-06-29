@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2757029296170647190}
   - component: {fileID: 991355441336183217}
-  m_Layer: 10
+  m_Layer: 6
   m_Name: Crouch
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -289,21 +289,21 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
-      inSlope: 0.39324304
-      outSlope: 0.39324304
+      value: 2
+      inSlope: 0.031153463
+      outSlope: 0.031153463
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.10833333
+      outWeight: 0.41488793
     - serializedVersion: 3
       time: 50
-      value: 10
-      inSlope: 0.41470298
-      outSlope: 0.41470298
+      value: 8
+      inSlope: 0.31472102
+      outSlope: 0.31472102
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.05
+      inWeight: 0.072931215
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
