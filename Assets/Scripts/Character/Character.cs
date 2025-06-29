@@ -20,7 +20,8 @@ namespace Character {
         }
 
         private void Update() {
-            this.AddImbalance(this.GetImbalanceGain());
+            if (Time.frameCount % 50 == 0)
+                this.AddImbalance(this.GetImbalanceGain());
             this.ImbalanceCombact();
             if (GetDecoratedStatus().health<=0)
             {
@@ -31,6 +32,9 @@ namespace Character {
         private void ImbalanceCombact() {
             var value = Input.GetAxis("ImbalanceCombact");
             var delta = Mathf.RoundToInt(value * combactForce * Time.deltaTime * 100);
+            if (!Mathf.Approximately(delta, 0)) {
+                Debug.Log(delta);
+            }
             this.status.imbalance += delta;
         }
 
@@ -40,8 +44,8 @@ namespace Character {
         }
 
         private int GetImbalanceGain() {
-            //return Mathf.RoundToInt(imbalanceGainCurve[Mathf.Abs(this.GetDecoratedStatus().imbalance].value);
-            return 0;
+            float time = Mathf.Abs(this.GetDecoratedStatus().imbalance) * 1f / this.GetDecoratedStatus().maxImbalance;
+            return Mathf.RoundToInt(imbalanceGainCurve.Evaluate(time));
         }
 
         public void AddImbalance(int delta) {
