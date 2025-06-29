@@ -1,3 +1,4 @@
+using BehaviorDesigner.Runtime.Tasks.Unity.UnityPlayerPrefs;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -21,16 +22,29 @@ public class WaveController : MonoBehaviour {
         }
     }
 
+    public void Rescale(float newScale) {
+        var oldy = this.transform.localScale.y;
+        this.transform.localScale = new Vector3(this.transform.localScale.x, newScale, 1);
+        this.transform.position = new Vector3(
+            this.transform.position.x,
+            this.transform.position.y + (oldy - this.transform.localScale.y) / 2f,
+            this.transform.position.z
+        );
+    }
+
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.CompareTag("PlayerWave") || collision.CompareTag("EnemyWave")) {
             WaveController anotherWave = collision.GetComponent<WaveController>();
             if (this.rigidbody.velocity.x * collision.gameObject.GetComponent<Rigidbody2D>().velocity.x > 0) {
                 this.strength += anotherWave.strength;
+                this.Rescale(this.strength);
                 anotherWave.strength = 0;
             } else {
                 int temp = this.strength;
                 this.strength -= anotherWave.strength;
+                this.Rescale(this.strength);
                 anotherWave.strength -= temp;
+                anotherWave.Rescale(anotherWave.strength);
             }
         } else if (collision.CompareTag("Enemy") && this.CompareTag("PlayerWave")) {
             Enemy.Enemy enemy = collision.GetComponent<Enemy.Enemy>();

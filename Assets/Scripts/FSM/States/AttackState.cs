@@ -50,13 +50,7 @@ namespace AI.FSM
                     wave.GetComponent<WaveController>().strength = strength;
                     wave.GetComponent<Rigidbody2D>().velocity =
                         characterFSM.waveVelocityFactor / strength * Vector2.right;
-                    var oldy = wave.transform.localScale.y;
-                    wave.transform.localScale = new Vector2(Mathf.Abs(wave.transform.localScale.x) * -1, strength);
-                    wave.transform.position = new Vector3(
-                        wave.transform.position.x,
-                        wave.transform.position.y + (oldy - wave.transform.localScale.y) / 2f,
-                        wave.transform.position.z
-                    );
+                    wave.GetComponent<WaveController>().Rescale(strength);
                 }
             }
         }
