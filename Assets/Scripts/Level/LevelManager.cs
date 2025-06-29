@@ -332,15 +332,21 @@ public class LevelManager : MonoBehaviour
             isLevelFinished = true;
             Debug.Log("Level Victory!");
             // 触发胜利逻辑
+            BattleUI.Instance.ShowGameOver(true);
         }
     }
 
     public void PlayerDefeated()
-    {
+    {        
+        if (currentState == LevelState.Defeat)
+        {
+            return;
+        }
         currentState = LevelState.Defeat;
         isLevelFinished = true;
         Debug.Log("Level Defeat!");
         // 触发失败逻辑
+        BattleUI.Instance.ShowGameOver(true);
     }
 
     public LevelState GetCurrentLevelState()
