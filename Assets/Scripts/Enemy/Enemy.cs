@@ -48,12 +48,14 @@ namespace Enemy {
             this.additionalAttack = additionalAttack;
             var newBullet = Instantiate(bullet, this.transform.position, Quaternion.identity);
             newBullet.tag = "EnemyBullet";
+            newBullet.layer = LayerMask.GetMask("EnemyBullet");
             newBullet.GetComponent<BulletController>().attack = this.attack + additionalAttack;
         }
 
         public void CreateWave(int additionalAttack) {
             var newWave = Instantiate(wave, this.transform.position, Quaternion.identity);
             newWave.tag = "EnemyWave";
+            newWave.layer = LayerMask.GetMask("EnemyBullet");
             int strength = Mathf.FloorToInt((attack + additionalAttack) * waveStrengthFactor * this.transform.localScale.y);
             newWave.GetComponent<WaveController>().strength = strength;
             newWave.GetComponent<Rigidbody2D>().velocity = waveVelocityFactor / strength * Vector2.left;

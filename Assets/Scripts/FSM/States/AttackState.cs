@@ -31,6 +31,7 @@ namespace AI.FSM {
                 if (InputQueue.Instance.LastPressedKey == "ChopDown") {
                     var wave = Object.Instantiate(characterFSM.wave, characterFSM.transform.position, Quaternion.identity);
                     wave.tag = "PlayerWave";
+                    wave.layer = LayerMask.GetMask("PlayerWave");
                     int strength = Mathf.FloorToInt(characterFSM.character.GetDecoratedStatus().attack * characterFSM.waveStrengthFactor * characterFSM.transform.localScale.y);
                     wave.GetComponent<WaveController>().strength = strength;
                     wave.GetComponent<Rigidbody2D>().velocity = characterFSM.waveVelocityFactor / strength * Vector2.right;
@@ -60,6 +61,7 @@ namespace AI.FSM {
                         Rigidbody2D rigidbody = collider.GetComponent<Rigidbody2D>();
                         rigidbody.velocity = rigidbody.velocity * -3;
                         bulletController.gameObject.tag = "PlayerBullet";
+                        bulletController.gameObject.layer = LayerMask.GetMask("PlayerBullet");
                     }
                 }
             }
