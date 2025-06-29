@@ -43,6 +43,8 @@ namespace AI.FSM {
             foreach (FSMTrigger i in _triggers) {
                 if (fsm.HasTrigger(i.TriggerID) || i.HandleTrigger(fsm)) {
                     fsm.ChangeActiveState(_map[i.TriggerID]);
+                    if (fsm.animator != null)
+                        fsm.animator.SetTrigger(i.TriggerID.ToString());
                     return;
                 }
             }
