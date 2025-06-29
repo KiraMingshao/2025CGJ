@@ -247,7 +247,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackCollider: {fileID: 3713259881124901104}
   bodyCollider: {fileID: 8917406104023605156}
-  animator: {fileID: 0}
+  animator: {fileID: 4584765572193431992}
   bullet: {fileID: 8880025452507042074, guid: 84b31a40191f12e47984a96c4d03d420, type: 3}
   wave: {fileID: 0}
   spawnPosition: {x: 0, y: 0, z: 0}

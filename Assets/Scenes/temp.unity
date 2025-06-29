@@ -801,6 +801,14 @@ PrefabInstance:
       propertyPath: m_CollisionDetection
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2919792055169629082, guid: ebdc45574af4e7646b797d4623971ac0, type: 3}
+      propertyPath: combactForce
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -2919792055169629082, guid: ebdc45574af4e7646b797d4623971ac0, type: 3}
+      propertyPath: status.maxImbalance
+      value: 150
+      objectReference: {fileID: 0}
     - target: {fileID: 6031166209887633097, guid: ebdc45574af4e7646b797d4623971ac0, type: 3}
       propertyPath: m_Name
       value: Nutcracker
@@ -1025,7 +1033,7 @@ MonoBehaviour:
   currentProgress: 0
   normalWaveConfigs:
   - startProgress: 0
-    endProgress: 1
+    endProgress: 10
     waveGroups:
     - enemies:
       - {fileID: 3260893188352361170, guid: adf737b37ec82ae4faefe83e7a4cd6de, type: 3}
@@ -1035,7 +1043,7 @@ MonoBehaviour:
     randomSelection: 0
     waveInterval: 15
     killCountToNextWave: 0
-  - startProgress: 2
+  - startProgress: 20
     endProgress: 40
     waveGroups:
     - enemies:
@@ -1056,8 +1064,8 @@ MonoBehaviour:
     randomSelection: 0
     waveInterval: 15
     killCountToNextWave: 0
-  - startProgress: 40
-    endProgress: 100
+  - startProgress: 30
+    endProgress: 50
     waveGroups:
     - enemies:
       - {fileID: 3260893188352361170, guid: 4d887c8a1fd73e74182129b71f269bff, type: 3}
@@ -1078,12 +1086,12 @@ MonoBehaviour:
     waveInterval: 15
     killCountToNextWave: 0
   specialWaveConfigs:
-  - triggerProgress: 95
+  - triggerProgress: 1
     waveGroup:
       enemies:
       - {fileID: 3260893188352361170, guid: bf8ff7151cb821047a8850e8fc677682, type: 3}
       spawnInterval: 0
-  progressSpeed: 0.5
+  progressSpeed: 1
   RandomSkyPoints:
   - {x: 7.5, y: 7.5, z: 0}
   - {x: 2, y: 6, z: 0}
