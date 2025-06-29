@@ -18,6 +18,14 @@ public class BattleUI : MonoBehaviour
     public EnergyItem endItem;
     public List<GameObject> stars;
     public Text gameOverTip;
+    public Transform startPos;
+    public Transform endPos;
+    public Transform bg1;
+    public Transform bg2;
+    public int scrollSpeed = 1;
+
+    public float _spriteWidth = 902.3438f;
+
     private List<EnergyItem> energyItems = new List<EnergyItem>();
 
     private void Awake()
@@ -45,6 +53,22 @@ public class BattleUI : MonoBehaviour
         CreateEnergy(maxEnergy);
         jumpChangeSlider.value = 0;
         gameOverTip.gameObject.SetActive(false);
+
+       // _spriteWidth = bg1.GetComponent<RectTransform>().rect.width;
+
+        /*
+        bg1.DOLocalMove(endPos.localPosition, (bg1.localPosition.x - endPos.localPosition.x) / 20f).OnComplete(()=> 
+        {
+            bg1.localPosition = startPos.localPosition;
+            bg1.DOLocalMove(endPos.localPosition, (bg1.localPosition.x - endPos.localPosition.x) / 20f).SetLoops(-1);
+        });
+
+        bg2.DOLocalMove(endPos.localPosition, (bg2.localPosition.x - endPos.localPosition.x) / 20f).OnComplete(() =>
+        {
+            bg2.localPosition = startPos.localPosition;
+            bg2.DOLocalMove(endPos.localPosition, (bg2.localPosition.x - endPos.localPosition.x) / 20f).SetLoops(-1);
+        });
+        */
     }
 
     public void InitLevel(List<SpecialWaveConfig> specialWaveConfigs)
@@ -137,5 +161,22 @@ public class BattleUI : MonoBehaviour
 
         var fsm = GameLauncher.Instance.player.GetComponent<CharacterBattleActionFSM>();
         jumpChangeSlider.value = fsm.jumpCharge;
+
+        // 向左移动背景
+        bg1.Translate(Vector3.left * scrollSpeed * Time.deltaTime);
+        bg2.Translate(Vector3.left * scrollSpeed * Time.deltaTime);
+
+        // 检查是否完全移出屏幕左侧
+        if (bg1.position.x <= endPos.position.x)
+        {
+            // 将bg1重置到bg2右侧
+            bg1.position = startPos.position;
+        }
+
+        if (bg2.position.x <= endPos.position.x)
+        {
+            // 将bg2重置到bg1右侧
+            bg2.position = startPos.position;
+        }
     }
 }

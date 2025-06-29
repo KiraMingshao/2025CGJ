@@ -134,7 +134,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 30
   m_Sprite: {fileID: 21300000, guid: 298a4d8a995530b4db3fff3c75a9b9df, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
@@ -252,6 +252,7 @@ MonoBehaviour:
   wave: {fileID: 0}
   spawnPosition: {x: 0, y: 0, z: 0}
   hpSlider: {fileID: 4550775134181239638}
+  secondsBeforeDestroy: 5
   health: 10
   attack: 3
   resilience: 1
@@ -259,6 +260,7 @@ MonoBehaviour:
   maxImbalance: 20
   isAir: 1
   additionalAttack: 0
+  hasBeenAttacked: 0
   attackTrigger: Attack
   chargeTrigger: Charge
   respawnTrigger: Respawn
