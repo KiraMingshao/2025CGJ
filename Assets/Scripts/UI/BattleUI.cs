@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using AI.FSM;
 
 public class BattleUI : MonoBehaviour
 {
@@ -11,10 +12,12 @@ public class BattleUI : MonoBehaviour
     public Slider hpSlider;
     public Slider levelSlider;
     public Slider balanceSlider;
+    public Slider jumpChangeSlider;
     public Transform energyContent;
     public EnergyItem startItem;
     public EnergyItem endItem;
     public List<GameObject> stars;
+    public Text gameOverTip;
     private List<EnergyItem> energyItems = new List<EnergyItem>();
 
     private void Awake()
@@ -37,7 +40,8 @@ public class BattleUI : MonoBehaviour
         levelSlider.value = 0;
         balanceSlider.value = 0;
         CreateEnergy(maxEnergy);
-
+        jumpChangeSlider.value = 0;
+        gameOverTip.gameObject.SetActive(false);
     }
 
     public void InitLevel(List<SpecialWaveConfig> specialWaveConfigs)
@@ -97,6 +101,20 @@ public class BattleUI : MonoBehaviour
         }
     }
 
+    public void ShowGameOver(bool pass)
+    {
+        gameOverTip.gameObject.SetActive(true);
+        if (pass)
+        {
+
+            gameOverTip.text = "³É¹¦";
+        }
+        else
+        {
+            gameOverTip.text = "Ê§°Ü";
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {      
@@ -108,5 +126,13 @@ public class BattleUI : MonoBehaviour
     void Update()
     {
         levelSlider.value = LevelManager.Instance.currentProgress;
+        var character = GameLauncher.Instance.player.GetComponent<Character.Character>();
+        var status = character.GetDecoratedStatus();
+        SetBalance(status.imbalance);
+        SetHp(status.health);
+        SetEnergy(status.energy);
+
+        var fsm = GameLauncher.Instance.player.GetComponent<CharacterBattleActionFSM>();
+        jumpChangeSlider.value = fsm.jumpCharge;
     }
 }
