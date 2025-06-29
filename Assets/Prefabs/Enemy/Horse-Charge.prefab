@@ -217,7 +217,7 @@ MonoBehaviour:
   secondsBeforeDestroy: 5
   health: 10
   attack: 3
-  resilience: 1
+  resilience: 0
   imbalance: 0
   maxImbalance: 10
   isAir: 0
