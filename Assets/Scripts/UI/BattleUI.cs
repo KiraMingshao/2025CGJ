@@ -32,12 +32,15 @@ public class BattleUI : MonoBehaviour
         }
     }
 
-    public void Init(int maxHealth, int maxEnergy)
+    public void Init(int maxHealth, int maxEnergy,int maxImbalance)
     {
         hpSlider.maxValue = maxHealth;
         hpSlider.value = maxHealth;
         levelSlider.maxValue = 100f;
         levelSlider.value = 0;
+
+        balanceSlider.minValue = -maxImbalance;
+        balanceSlider.maxValue = maxImbalance;
         balanceSlider.value = 0;
         CreateEnergy(maxEnergy);
         jumpChangeSlider.value = 0;
@@ -48,7 +51,7 @@ public class BattleUI : MonoBehaviour
     {
         var character = GameLauncher.Instance.player.GetComponent<Character.Character>();
 
-        Init(character.status.maxHealth, character.status.maxEnergy);
+        Init(character.status.maxHealth, character.status.maxEnergy,character.status.maxImbalance);
 
         for (int i = 0; i < stars.Count; i++)
         {
